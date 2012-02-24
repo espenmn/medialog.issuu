@@ -4,8 +4,8 @@
    <include package="plone.app.contentmenu" />
     <browser:page 
         name="issuuview"
-        for="medialog.issuu.interfaces.IIssuuitemObject"
-        permission="zope2.View"
+	for="*"
+	permission="zope2.View"
         layer="medialog.issuu.interfaces.IIssuuitemObject"
         class="medialog.issuu.browser.views.IssuuAPI"
         template="issuuview.pt"
