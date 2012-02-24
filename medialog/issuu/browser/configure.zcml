@@ -1,15 +1,10 @@
-<configure
-    xmlns:zcml="http://namespaces.zope.org/zcml"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="medialog.issuu">
+<configure    xmlns:zcml="http://namespaces.zope.org/zcml"    xmlns:browser="http://namespaces.zope.org/browser"    xmlns:plone="http://namespaces.plone.org/plone"    i18n_domain="medialog.issuu">
 
-   <include package="plone.browserlayer" />
+  <include package="plone.browserlayer" />
    <include package="plone.app.contentmenu" />
-
-    <browser:page 
+    <browser:page 
         name="issuuview"
-        for="Products.ATContentTypes.interface.file.IATFile"
+        for="medialog.issuu.interfaces.IIssuuitemObject"
         permission="zope2.View"
         layer="medialog.issuu.interfaces.IIssuuitemObject"
         class="medialog.issuu.browser.views.IssuuAPI"
@@ -24,5 +19,4 @@
         description="To Issuu or not to issuu."
     />
 
-
-</configure>
+</configure>
