@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="Image"> 
+  <property name="view_methods" purge="false">
+  <element value="miniimage_view"/>
+ </property>
+ </object>

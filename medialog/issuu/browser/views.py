@@ -1,29 +1,33 @@
-"""import requests
-import md5
-import json"""
-from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
-from plone.app.form import base as ploneformbase
-from zope.formlib import form
+""" docs http://docs.python.org/library/hashlib.html#module-hashlib""" 
+from hashlib import md5
+"""import json """
 
-from Acquisition import aq_inner
+
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from cStringIO import StringIO
+from zope.interface import implements, Interface
 
-from Products.ATContentTypes.interface.file.IATFile
+from Products.Five import BrowserView
+from Products.CMFCore.utils import getToolByName
 
 
-class IssuuAPI(BrowserView  ):
+class IIssuuview(Interface):
     """
-    not sure if this is needed
-    """    
-    template = ViewPageTemplateFile('issuuview.pt')
+    Colorized Image View view interface
+    """
 
-    def __init__(self, context, request):
-        """
-        Initialize an API client with the given     def __init__(self, key, secret): ``key`` and ``secret``.
-        """
+    def test():
+        """ test method"""
+
+class Issuuview(BrowserView):
+    """ To Issuu or not to issuu, thats the question """    
+    def __call__(self, REQUEST):
         self.key = 'eg6rrqqvabzzkkxfdqqz52tzi7m2fsbv'
         self.secret = 'ektdvd0zzoj74nk837vfvqbur3jylvlz'
+        
+        upload = self.upload_document
+        return '<p><b>hello</b> world</p>'
+        
         
     def add_bookmark(self):
         """

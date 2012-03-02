@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="Folder"> 
+  <property name="view_methods" purge="false">
+  <element value="folder_visualbox_view"/>
+  <element value="visualbox"/>
+  <element value="folder_dropshadowview" />
+  <element value="folder_colorimageview" />
+ </property>
+ </object>

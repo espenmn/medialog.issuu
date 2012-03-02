@@ -7,11 +7,18 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="medialog.issuu">
 
-  <five:registerPackage package="." initialize=".initialize" />
+    <five:registerPackage package="." initialize=".initialize" />
 
-    <include file="profiles.zcml" />
     <include package=".browser" />
+     <!-- Register the installation GenericSetup extension profile -->
 
+   <genericsetup:registerProfile
+      name="default"
+      title="Medialog Issuu Default profile"
+      directory="profiles/default"
+      description="Issuu.com for plone (maybe)"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
 </configure>
 
