@@ -1,4 +1,4 @@
-import md5
+from hashlib import md5
 
 try :
    # python 2.6
@@ -7,12 +7,13 @@ except ImportError:
    # plone 3.3
    import simplejson as json
 
-#from api import IssuuAPI
 
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.ATContentTypes.interface.file import IATFile
+from plone.app.blob.tests.utils import getFile
+
 from Products.CMFCore.utils import getToolByName
 # will probably need this for gettint the key and secret from somewhere
 
@@ -31,56 +32,19 @@ class Issuuupload(BrowserView):
     not sure if this works
     """
 
-    def __init__(self, key='', secret=''):
-        """
-        Initialize an API client with the given ``key`` and ``secret``.
-        """
-        self.key = key
-        self.secret = secret
-    
-    
+       
     def __call__(self, REQUEST):
     	"""this is the upload part """
         self.title = self.context.title
         self.file = self.context.id 
+        self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
+        self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         
-    	upload = issuu.upload_document(
-        file = open('brochure.pdf'),
-        title = 'Brochure'
+    	upload = self.upload_document(
+        file = open(self.file),
+        title = self.title
         )
-
-    def add_bookmark(self):
-        """
-        Add a bookmark.
-        """
-        raise NotImplementedError()
-
-    def list_bookmarks(self):
-        """
-        List bookmarks.
-        """
-        raise NotImplementedError()
-
-    def update_bookmark(self):
-        """
-        Update a bookmark.
-        """
-        raise NotImplementedError()
-
-    def delete_bookmark(self, names):
-        """
-        Delete a bookmark.
-        """
-        raise NotImplementedError()
-
-    def list_documents(self):
-        """
-        List documents for this user.
-        """
-        return self._query(
-            url = 'http://api.issuu.com/1_0',
-            action = 'issuu.documents.list'
-        )
+        
 
     def upload_document(self, file, title=''):
         """
@@ -95,59 +59,8 @@ class Issuuupload(BrowserView):
             }
         )
 
-        return response['_content']['document']['documentId']
+        return response['_content']['document']['documentId']        
 
-    def update_document(self):
-        """
-        Update a document.
-        """
-        raise NotImplementedError()
-
-    def delete_document(self, id):
-        """
-        Delete a document.
-
-        :param id: A string describing a document ID.
-        """
-        self.delete_documents([id])
-
-    def delete_documents(self, ids):
-        """
-        Delete the documents with the given ``ids``.
-
-        :param ids: A list of strings describing document IDs.
-        """
-        self._query(
-            url = 'http://api.issuu.com/1_0',
-            action = 'issuu.document.delete',
-            data = {
-                'names': ','.join(ids)
-            }
-        )
-
-    def add_folder(self):
-        """
-        Create a folder.
-        """
-        raise NotImplementedError()
-
-    def list_folders(self):
-        """
-        List folders.
-        """
-        raise NotImplementedError()
-
-    def update_folder(self):
-        """
-        Update a folder.
-        """
-        raise NotImplementedError()
-
-    def delete_folder(self):
-        """
-        Delete a folder.
-        """
-        raise NotImplementedError()
 
     def _query(self, url, action, data=None):
         """
@@ -205,7 +118,104 @@ class Issuuupload(BrowserView):
             if isinstance(data[key], (str, unicode)):
                 signature += key + data[key]
 
-        return md5.new(signature).hexdigest()
+        return md5(signature).hexdigest()
+
+        
+    
+    
+    
+    
+    
+    
+    
+        
+    def delete_document(self, id):
+        """
+        Delete a document.
+
+        :param id: A string describing a document ID.
+        """
+        self.delete_documents([id])
+
+    def add_bookmark(self):
+        """
+        Add a bookmark.
+        """
+        raise NotImplementedError()
+
+    def list_bookmarks(self):
+        """
+        List bookmarks.
+        """
+        raise NotImplementedError()
+
+    def update_bookmark(self):
+        """
+        Update a bookmark.
+        """
+        raise NotImplementedError()
+
+    def delete_bookmark(self, names):
+        """
+        Delete a bookmark.
+        """
+        raise NotImplementedError()
+
+    def list_documents(self):
+        """
+        List documents for this user.
+        """
+        return self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.documents.list'
+        )
+
+
+    def update_document(self):
+        """
+        Update a document.
+        """
+        raise NotImplementedError()
+
+
+    def delete_documents(self, ids):
+        """
+        Delete the documents with the given ``ids``.
+
+        :param ids: A list of strings describing document IDs.
+        """
+        self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.document.delete',
+            data = {
+                'names': ','.join(ids)
+            }
+        )
+
+    def add_folder(self):
+        """
+        Create a folder.
+        """
+        raise NotImplementedError()
+
+    def list_folders(self):
+        """
+        List folders.
+        """
+        raise NotImplementedError()
+
+    def update_folder(self):
+        """
+        Update a folder.
+        """
+        raise NotImplementedError()
+
+    def delete_folder(self):
+        """
+        Delete a folder.
+        """
+        raise NotImplementedError()
+
 
     class Error(StandardError):
         pass
