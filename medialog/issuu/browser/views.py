@@ -92,6 +92,8 @@ class Issuuupload(BrowserView):
 
         for key in files:
             data.pop(key)
+            
+        print data
 
         response = urllib.urlopen(
             url = url,
