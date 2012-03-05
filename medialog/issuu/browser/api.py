@@ -7,47 +7,15 @@ except ImportError:
    # plone 3.3
    import simplejson as json
 
-#from api import IssuuAPI
 
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
-from zope.interface import implements, Interface
-from Products.Five import BrowserView
-from Products.ATContentTypes.interface.file import IATFile
-from Products.CMFCore.utils import getToolByName
-# will probably need this for gettint the key and secret from somewhere
+class IssuuAPI(object):
 
-
-
- 
-class IIssuuupload(Interface):
-    """
-    bla bla bla
-    """
-    def test():
-        """ test method"""
-                
-class Issuuupload(BrowserView):
-    """
-    not sure if this works
-    """
-
-    def __init__(self, key='', secret=''):
+    def __init__(self, key, secret):
         """
         Initialize an API client with the given ``key`` and ``secret``.
         """
         self.key = key
         self.secret = secret
-    
-    
-    def __call__(self, REQUEST):
-    	"""this is the upload part """
-        self.title = self.context.title
-        self.file = self.context.id 
-        
-    	upload = issuu.upload_document(
-        file = open('brochure.pdf'),
-        title = 'Brochure'
-        )
 
     def add_bookmark(self):
         """

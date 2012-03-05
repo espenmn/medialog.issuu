@@ -1,4 +1,0 @@
-<layers>
-    <layer name="medialog.issuu"
-           interface="medialog.issuu.interfaces.IIssuuObject" />
-</layers>

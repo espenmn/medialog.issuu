@@ -1,14 +1,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
+<body>    
+    <metal:body fill-slot="content-core">
+ <div>
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="width:420px;height:297px" id="5b265645-0505-0bad-ce44-62430bea7802" >
+        <param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId=081219132433-764a1eafce5141fda136d10d58bd45f5" />
+        <param name="allowfullscreen" value="true"/>
+        <param name="menu" value="false"/>
+        <param name="wmode" value="transparent"/>
+        <embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent" style="width:420px;height:297px" flashvars="mode=mini&documentId=081219132433-764a1eafce5141fda136d10d58bd45f5" />
+    </object>
+    <div style="width:420px;text-align:left;">
+        <a href="http://issuu.com/press/docs/2008-12?mode=embed" target="_blank">Open publication</a> - Free <a href="http://issuu.com" target="_blank">publishing</a> - <a href="http://issuu.com/search?q=smartlook" target="_blank">More smartlook</a>
+    </div>
+</div>   
+   
+<form action="http://upload.issuu.com/1_0" enctype="multipart/form-data" method="post"> 
+ <input type="hidden" name="action" value="issuu.document.upload"/>  
+ <input type="hidden" name="signature"  value="81ba0f7be415b8efdff0022563899d55" />   
 
- 
- 
-<div metal:fill-slot="main">
- Nothing here yet
-</div>
+ <input type="hidden" name="apiKey"     value="y70fz64msx5z2v2hwvo0i2qno1la4vdt"/>   
+  <input type="file" name="file"/> 
+  <input type="hidden" name="format" value="json" /> 
+  <input type="submit" name="_upload" value="Upload"/> 
+  
 
+</metal:body>
+</body>
 </html>
