@@ -1,4 +1,5 @@
 from hashlib import md5
+import urllib
 
 try :
    # python 2.6
@@ -36,12 +37,18 @@ class Issuuupload(BrowserView):
     def __call__(self, REQUEST):
     	"""this is the upload part """
         self.title = self.context.title
-        self.file = self.context.id 
+        self.file = self.context.getFile
+        context =self.context
+        content_type = context.getFile().getContentType()
+        if content_type == "application/pdf":
+            pdf_file_data_string = str(context.getFile())
+               
+        
         self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         
     	upload = self.upload_document(
-        file = open(self.file),
+        file = pdf_file_data_string,
         title = self.title
         )
         
@@ -86,10 +93,9 @@ class Issuuupload(BrowserView):
         for key in files:
             data.pop(key)
 
-        response = requests.post(
+        response = urllib.urlopen(
             url = url,
             data = data,
-            files = files
         )
 
         try:
