@@ -93,13 +93,8 @@ class Issuuupload(BrowserView):
         for key in files:
             data.pop(key)
             
-        print data
-
-        response = urllib.urlopen(
-            url = url,
-            data = data,
-        )
-
+        response = urllib.urlopen(url + data['signature'] + action + file + self.key + self.title)
+		
         try:
             data = json.loads(response.content)['rsp']
         except ValueError:
