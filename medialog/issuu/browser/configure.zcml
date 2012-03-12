@@ -1,6 +1,19 @@
-<configure    xmlns:zcml="http://namespaces.zope.org/zcml"    xmlns:browser="http://namespaces.zope.org/browser"    xmlns:plone="http://namespaces.plone.org/plone"    i18n_domain="medialog.issuu">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="medialog.issuu">
 
-       	<!-- include package="plone.app.contentmenu" / -->
-   <browser:page	for="Products.ATContentTypes.interface.file.IATFile"        name="issuu-upload"		class="medialog.issuu.browser.views.Issuuupload"        permission="zope2.View"
-         />   <browser:page	for="Products.ATContentTypes.interface.file.IATFile"        name="issuuview"		template="issuuview.pt"		permission="zope2.View"
- 		class="medialog.issuu.browser.views.Issuuupload"    /></configure>
+  <include package="plone.app.contentmenu" />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="issuu_view"
+      class=".views.issuuView"
+      template="issuuview.pt"
+      permission="zope2.View"
+      />
+
+
+</configure>

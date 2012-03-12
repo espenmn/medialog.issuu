@@ -1,0 +1,2 @@
+recursive-include medialog *
+global-exclude *pyc

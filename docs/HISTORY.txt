@@ -1,4 +1,7 @@
 Changelog
 =========
 
-See README,txt
+0.1dev (unreleased)
+-------------------
+
+- Initial release
