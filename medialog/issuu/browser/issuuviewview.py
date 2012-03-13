@@ -28,7 +28,7 @@ class IissuuviewView(Interface):
 
 class issuuviewView(BrowserView):
     """
-    issuuview browser view
+    issuu browser view
     """
     implements(IissuuviewView)
 
@@ -48,6 +48,23 @@ class issuuviewView(BrowserView):
     @property
     def portal(self):
         return getToolByName(self.context, 'portal_url').getPortalObject()
+
+
+
+    def __call_(self, file, title=''):
+        """
+        Upload the given ``file``.
+        """
+        response = self._query(
+            url = 'http://upload.issuu.com/1_0',
+            action = 'issuu.document.upload',
+            data = {
+                'file': self.get_data,
+                'title': title
+            }
+        )
+
+        return response['_content']['document']['documentId']
 
 
 
