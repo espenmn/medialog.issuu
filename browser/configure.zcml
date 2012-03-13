@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="medialog.issuu">
+
+  <include package="plone.app.contentmenu" />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="issuu_view"
+      class=".issuuviewview.issuuviewView"
+      template="issuuviewview.pt"
+      allowed_interface=".issuuviewview.IissuuviewView"
+      permission="zope.Public"
+      />
+
+
+</configure>
