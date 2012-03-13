@@ -10,9 +10,10 @@
   <browser:page
       for="*"
       name="issuu_view"
-      class=".views.issuuView"
-      template="issuuview.pt"
-      permission="zope2.View"
+      class=".issuuviewview.issuuviewView"
+      template="issuuviewview.pt"
+      allowed_interface=".issuuviewview.IissuuviewView"
+      permission="zope.Public"
       />
 
 

@@ -23,6 +23,7 @@
   
   <!-- -*- extra stuff goes here -*- -->
 
+  <include package=".browser" />
   
 
 </configure>
