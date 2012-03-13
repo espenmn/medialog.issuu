@@ -12,7 +12,7 @@
  <input type="hidden" name="signature" value=""  tal:attributes="value uploaddocument/mysign" />   
 
  <input type="hidden" name="apiKey"     value="" tal:attributes="value uploaddocument/key"/>   
-  <input type="hidden" name="file" tal:attributes="context/get_data|context/data|nothing" /> 
+  <input type="file" name="file"  /> 
   <input type="hidden" name="format" value="json" /> 
   <input type="submit" name="_upload" value="Upload"/> 
   
