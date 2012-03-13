@@ -38,7 +38,6 @@ class issuuviewView(BrowserView):
         self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         self.title = context.title
-        self.file = str(context.getFile())
         
 
     @property
@@ -198,8 +197,6 @@ class issuuviewView(BrowserView):
             files = files
         )
         
-        print response
-
         try:
             data = json.loads(response.content)['rsp']
         except ValueError:

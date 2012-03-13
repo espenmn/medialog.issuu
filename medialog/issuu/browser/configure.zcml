@@ -11,8 +11,6 @@
       for="*"
       name="issuu_view"
       class=".issuuviewview.issuuviewView"
-      template="issuuviewview.pt"
-      allowed_interface=".issuuviewview.IissuuviewView"
       permission="zope.Public"
       />
 
