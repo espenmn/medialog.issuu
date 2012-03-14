@@ -10,7 +10,7 @@ from plone.app.form import base as ploneformbase
 from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 
 from medialog.issuu.interfaces import IIssuuSettings 
-from medialog.issuu import issuu_message_factory as _
+from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
 
     

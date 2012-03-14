@@ -37,7 +37,7 @@
   <browser:page
     name="issuu-settings"
     for="medialog.issuu.interfaces.IIssuuPage"
-    class=".forms.IssuuPageSettingsForm"
+    class=".forms.IssuuSettingsForm"
     permission="medialog.issuu.ManageIssuuSettings" />
     
   <adapter 
@@ -52,7 +52,7 @@
     menu="plone_displayviews"
     title="Issuu View"
     action="issuuview"
-    description="Shows an easyissuu for the contents." />
+    description="Shows an issuu for the contents." />
 
   <browser:page
     name="view-issuu-settings"
@@ -63,7 +63,7 @@
   <adapter 
     for="*"
     provides="medialog.issuu.interfaces.IViewIssuuSettings"
-    factory="medialog.issuu.settings.ViewIssuuSettings" />
+    factory="medialog.issuu.settings.IssuuSettings" />
     
   <browser:page 
     name="enable_issuu"
@@ -79,7 +79,6 @@
     permission="medialog.issuu.ManageIssuuSettings"
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="disable"
-    layer="medialog.issuu.interfaces.IIssuuLayer"
     class=".utils.IssuuUtilProtected" />
                    
  
