@@ -19,12 +19,6 @@ from Products.ATContentTypes.interfaces import IATFile
 
 from medialog.issuu import issuuMessageFactory as _
 
-
-from Products.Archetypes.Field import FileField
-from Acquisition import aq_inner
-
-
-
 class IissuuView(Interface):
     """
     issuu view interface
@@ -37,36 +31,30 @@ class IissuuView(Interface):
 class issuuView(BrowserView):
     """
     issuu browser view
-    The rest of the code is in issuuview.py 
-    
-    
-    (will copy it over when this is working properly)
-    
-    
     """
     def __init__(self, context, request):
         self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         self.title = context.title
+        #thanks to nathan for this line
+        #remember 'open' take a file (ONLY)
         self.file = StringIO(str(context.getFile().data))
-        #self.filen = str(self.file)
-        #self.myfile = thefile.encode( "utf-8" ) 
-        #str(context.getField('file')
-        #self.field = context.getField('file') or context.getPrimaryField()
+        
+    @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
+    @property
+    def portal(self):
+        return getToolByName(self.context, 'portal_url').getPortalObject()
         
     def __call__(self):
         """
-        Upload the given ``file``.
-        works iwth 
-        file = open ('/Users/g4/src/xmedialog.issuu/medialog/issuu/tests/fixtures/parrot.pdf')
-        """
-        
-        upload = self.upload_document(
-        	title = self.title,
-            file = open(self.file)
-        )
+        Upload current (pdf) file.
+        """        
+        upload = self.upload_document()
 
-    def upload_document(self, file, title=''):
+    def upload_document(self):
         """
         Upload the given ``file``.
         """
@@ -74,8 +62,8 @@ class issuuView(BrowserView):
             url = 'http://upload.issuu.com/1_0',
             action = 'issuu.document.upload',
             data = {
-                'file': file,
-                'title': title
+                'file': self.file,
+                'title': self.title
             }
         )
         
@@ -140,6 +128,97 @@ class issuuView(BrowserView):
         mysign = md5(signature).hexdigest()
         return mysign
         
+        
     class Error(StandardError):
         pass
+        
+        
+    #the rest is for the future....
+        
+    def add_bookmark(self):
+        """
+        Add a bookmark.
+        """
+        raise NotImplementedError()
+
+    def list_bookmarks(self):
+        """
+        List bookmarks.
+        """
+        raise NotImplementedError()
+
+    def update_bookmark(self):
+        """
+        Update a bookmark.
+        """
+        raise NotImplementedError()
+
+    def delete_bookmark(self, names):
+        """
+        Delete a bookmark.
+        """
+        raise NotImplementedError()
+
+    def list_documents(self):
+        """
+        List documents for this user.
+        """
+        return self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.documents.list'
+        )
+        
+    def update_document(self):
+        """
+        Update a document.
+        """
+        raise NotImplementedError()
+
+    def delete_document(self, id):
+        """
+        Delete a document.
+
+        :param id: A string describing a document ID.
+        """
+        self.delete_documents([id])
+
+    def delete_documents(self, ids):
+        """
+        Delete the documents with the given ``ids``.
+
+        :param ids: A list of strings describing document IDs.
+        """
+        self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.document.delete',
+            data = {
+                'names': ','.join(ids)
+            }
+        )
+
+    def add_folder(self):
+        """
+        Create a folder.
+        """
+        raise NotImplementedError()
+
+    def list_folders(self):
+        """
+        List folders.
+        """
+        raise NotImplementedError()
+
+    def update_folder(self):
+        """
+        Update a folder.
+        """
+        raise NotImplementedError()
+
+    def delete_folder(self):
+        """
+        Delete a folder.
+        """
+        raise NotImplementedError()       
+
+
         
