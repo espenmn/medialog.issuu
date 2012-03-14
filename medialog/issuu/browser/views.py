@@ -49,6 +49,7 @@ class issuuView(BrowserView):
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         self.title = context.title
         self.file = StringIO(str(context.getFile().data))
+        #self.filen = str(self.file)
         #self.myfile = thefile.encode( "utf-8" ) 
         #str(context.getField('file')
         #self.field = context.getField('file') or context.getPrimaryField()
