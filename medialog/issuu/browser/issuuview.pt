@@ -4,6 +4,8 @@
       i18n:domain="medialog.issuu">
 <body>
 <metal:body fill-slot="content-core">
+    <h1>jeg heter peter</h1>
+    <p>Her er mine filer</P>
 <div>
 	<object>
 		<param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;documentId=120314192629-6591a7f8235a47689a5e8180cc6eacbf" />

@@ -14,7 +14,6 @@ from zope.interface import implements, Interface
 
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Products.ATContentTypes.interfaces import IATFile
 
 
 from medialog.issuu import issuuMessageFactory as _
@@ -36,8 +35,9 @@ class issuuView(BrowserView):
         self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         self.title = context.title
+        self.context=context
         #thanks to nathan for this line
-        #remember 'open' take a file (ONLY)
+        #remember 'open' takes a file (ONLY)
         self.file = StringIO(str(context.getFile().data))
         
     @property
@@ -53,7 +53,8 @@ class issuuView(BrowserView):
         Upload current (pdf) file.
         """        
         upload = self.upload_document()
-
+        #set some settings to 'upload'
+       
     def upload_document(self):
         """
         Upload the given ``file``.
@@ -104,7 +105,10 @@ class issuuView(BrowserView):
         except ValueError:
             raise self.Error('API response could not be parsed as JSON: %s' % response.content)
 
-        return data
+        if data['stat'] == 'fail':
+            raise self.Error(data['_content']['error']['message'])
+        else:
+            return data
 
     def _sign(self, data):
         """
