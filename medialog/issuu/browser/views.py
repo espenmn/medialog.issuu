@@ -14,6 +14,8 @@ from zope.interface import implements, Interface
 
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.ATContentTypes.interfaces import IATFile
+
 
 from medialog.issuu import issuuMessageFactory as _
 
@@ -40,19 +42,22 @@ class issuuView(BrowserView):
         self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         self.title = context.title
-        context = aq_inner(context)
-        self.field = context.path
+        self.file = context
+        #self.fieldII = context.file
         #self.field = context.getField('file') or context.getPrimaryField()
+        #self.path = self.field.getPath
         
     def __call__(self):
         """
         Upload the given ``file``.
         /Users/g4/src/xmedialog.issuu/medialog/issuu/tests/fixtures/parrot.pdf'
         """
-        
+        import pdb; pdb.set_trace()
+        filen = self.file
+        fileurl = filen.absolute_url
         upload = self.upload_document(
-        	file = open('/Users/g4/src/xmedialog.issuu/medialog/issuu/tests/fixtures/parrot.pdf'),
-        	title = self.title
+        	title = self.title,
+            file = open(fileurl)
         )
 
     def upload_document(self, file, title=''):
