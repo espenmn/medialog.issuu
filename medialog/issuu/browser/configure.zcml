@@ -7,13 +7,18 @@
 
   <!-- -*- extra stuff goes here -*- -->
  
-      
+  <browser:page
+      for="*"
+      name="issuuview"
+      template="issuuview.pt"
+      permission="zope.Public"
+    />      
       
   <browser:page
       for="*"
       name="issuu"
       class=".views.issuuView"
-      allowed_interface=".issuuviewview.IissuuviewView"
+      allowed_interface=".views.IissuuView"
       permission="zope.Public"
     />
 

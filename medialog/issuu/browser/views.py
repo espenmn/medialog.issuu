@@ -104,10 +104,7 @@ class issuuView(BrowserView):
         except ValueError:
             raise self.Error('API response could not be parsed as JSON: %s' % response.content)
 
-        if data['stat'] == 'fail':
-            raise self.Error(data['_content']['error']['message'])
-        else:
-            return data
+        return data
 
     def _sign(self, data):
         """
