@@ -3,14 +3,21 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="medialog.issuu">
 <body>
+<metal:body fill-slot="content-core">
+<div>
+	<object>
+		<param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;documentId=120314192629-6591a7f8235a47689a5e8180cc6eacbf" />
+		<param name="allowfullscreen" value="true"/>
+		<param name="menu" value="false"/>
+		<param name="wmode" value="transparent"/>
+		<embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent"   flashvars="mode=mini&amp;documentId=101209160738-bfd67b25284249cfb535c886beb7430b" />
+	</object><div>
+	<a href="http://issuu.com/griegmedialogii/docs/gm_folder?mode=window&amp;backgroundColor=%23222222" target="_blank">
+	Open publication</a>
+</div>
 
 
-<metal:body fill-slot="content-core"  tal:define="uploaddocument view/_sign">
-
-
-<div><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"   id="d716b314-d7f3-1d40-5e10-23b112053e21" ><param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;backgroundColor=%23222222&amp;documentId=101209160738-bfd67b25284249cfb535c886beb7430b" /><param name="allowfullscreen" value="true"/><param name="menu" value="false"/><param name="wmode" value="transparent"/><embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent"   flashvars="mode=mini&amp;backgroundColor=%23222222&amp;documentId=101209160738-bfd67b25284249cfb535c886beb7430b" /></object><div style="width:420px;text-align:left;"><a href="http://issuu.com/griegmedialogii/docs/gm_folder?mode=window&amp;backgroundColor=%23222222" target="_blank">Open publication</a></div></div>
-
-
+<div><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="width:420px;height:279px" id="04f094e6-29fc-a22c-e5e3-f1f5fbceefbe" ><param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;viewMode=singlePage&amp;backgroundColor=%23222222&amp;documentId=120314192629-6591a7f8235a47689a5e8180cc6eacbf" /><param name="allowfullscreen" value="true"/><param name="menu" value="false"/><param name="wmode" value="transparent"/><embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent" style="width:420px;height:279px" flashvars="mode=mini&amp;viewMode=singlePage&amp;backgroundColor=%23222222&amp;documentId=120314192629-6591a7f8235a47689a5e8180cc6eacbf" /></object><div style="width:420px;text-align:left;"><a href="http://issuu.com/griegmedialogii/docs/name8235a4?mode=window&amp;backgroundColor=%23222222" target="_blank">Open publication</a> - Free <a href="http://issuu.com" target="_blank">publishing</a></div></div>
 
 
 
