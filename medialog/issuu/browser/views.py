@@ -1,8 +1,8 @@
 import requests
 from hashlib import md5
-import json
+#import json
+from cStringIO import StringIO
 
- 
 try :
    # python 2.6
    import json
@@ -37,27 +37,32 @@ class IissuuView(Interface):
 class issuuView(BrowserView):
     """
     issuu browser view
+    The rest of the code is in issuuview.py 
+    
+    
+    (will copy it over when this is working properly)
+    
+    
     """
     def __init__(self, context, request):
         self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         self.title = context.title
-        self.file = context
-        #self.fieldII = context.file
+        self.file = StringIO(str(context.getFile().data))
+        #self.myfile = thefile.encode( "utf-8" ) 
+        #str(context.getField('file')
         #self.field = context.getField('file') or context.getPrimaryField()
-        #self.path = self.field.getPath
         
     def __call__(self):
         """
         Upload the given ``file``.
-        /Users/g4/src/xmedialog.issuu/medialog/issuu/tests/fixtures/parrot.pdf'
+        works iwth 
+        file = open ('/Users/g4/src/xmedialog.issuu/medialog/issuu/tests/fixtures/parrot.pdf')
         """
-        import pdb; pdb.set_trace()
-        filen = self.file
-        fileurl = filen.absolute_url
+        
         upload = self.upload_document(
         	title = self.title,
-            file = open(fileurl)
+            file = open(self.file)
         )
 
     def upload_document(self, file, title=''):
