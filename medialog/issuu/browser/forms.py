@@ -5,9 +5,7 @@ import zope.lifecycleevent
 from zope.component import getMultiAdapter
 
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
-from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from plone.app.form import base as ploneformbase
-from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 
 from medialog.issuu.interfaces import IIssuuSettings 
 from medialog.issuu import issuuMessageFactory as _

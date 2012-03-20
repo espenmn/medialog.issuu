@@ -8,8 +8,13 @@ from OFS.interfaces import IItem
 class IIssuuLayer(Interface):
     """
     marker interface for issuu layer
+    
     """
-
+class IViewIssuu(Interface):
+    """
+    marker interface for content types that can use
+    easyslider view
+    """
 
 class IIssuuUtilProtected(Interface):
 
@@ -28,7 +33,7 @@ class IIssuuUtil(Interface):
 
     def enabled():
         """
-        checks if issuu is enabled on the peice of content
+        checks if issuu is enabled  
         """
 
     def view_enabled():
@@ -37,30 +42,3 @@ class IIssuuUtil(Interface):
         """
 
     
-class IIssuuSettings(Interface):
-    """
-    The actual issuu settings
-    """
-
-    id = schema.Text(
-        title=_(u'label_id_title_issuu_setting', default=u"Id"),
-        description=_(u"label_id_description_issuu_setting", 
-            default=u"The issuu id."),
-        default="",
-        required=True
-    )
-
-class IIssuu(Interface):
-    """
-    The copy of actual issuu settings
-    """
-
-    id = schema.Text(
-        title=_(u'label_id_title_issuu_setting', default=u"Id"),
-        description=_(u"label_id_description_issuu_setting", 
-            default=u"The issuu id."),
-        default="",
-        required=True
-    )
-
-   

@@ -18,7 +18,7 @@ from Products.CMFCore.utils import getToolByName
 
 from medialog.issuu import issuuMessageFactory as _
 
-class IissuuView(Interface):
+class IIssuuView(Interface):
     """
     issuu view interface
     """
@@ -27,7 +27,7 @@ class IissuuView(Interface):
         """ test method"""
 
 
-class issuuView(BrowserView):
+class IssuuView(BrowserView):
     """
     issuu browser view
     """
