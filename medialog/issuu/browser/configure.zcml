@@ -13,6 +13,7 @@
     for="*"
     permission="zope2.View"
     layer="medialog.issuu.interfaces.IIssuuLayer"
+    class=".views.TestView"
     template="issuuview.pt" />  
        
   <browser:page

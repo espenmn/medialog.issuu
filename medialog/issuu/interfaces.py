@@ -45,14 +45,7 @@ class IIssuuSettings(Interface):
     """
     The actual issuuview settings
     """
-
-
-    issuu_id = schema.Text(
-        title=_(u'label_issuu_id_title_issuu_setting', default=u"Issuu ID"),
-        description=_(u"label_issuu_id_description_issuu_setting", 
-            default=u"The id for the document at issuu.com"),
-        default='fd5164eb-0529-85ce-3b39-b61220296dc9',
-       
+    
     width = schema.Int(
         title=_(u'label_width_title_issuu_setting', default=u"Width"),
         description=_(u"label_width_description_issuu_setting", 
@@ -69,3 +62,8 @@ class IIssuuSettings(Interface):
         required=True
     )
  
+    issuu_id = schema.TextLine(
+        title=_(u"label_issuu_id",
+            default=u"ID for the document at issuu.com"),
+        default=u"b60a2d60-2961-aaf3-8af4-059348eba7ff"
+    )

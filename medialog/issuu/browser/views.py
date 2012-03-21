@@ -2,6 +2,7 @@ import requests
 from hashlib import md5
 #import json
 from cStringIO import StringIO
+from plone.memoize.instance import memoize
 
 try :
    # python 2.6
@@ -27,6 +28,20 @@ class IIssuuView(Interface):
         """ test method"""
 
 
+class TestView(BrowserView):
+    """
+    issuu testbrowser view
+    """
+    def __init__(self, context, request):
+		pass
+		
+    def __call__(self):
+        """
+        Dont ask.
+        """     		
+        settings = IssuuSettings(self.context)
+        width = settings.width
+
 class IssuuView(BrowserView):
     """
     issuu browser view
@@ -47,6 +62,7 @@ class IssuuView(BrowserView):
     @property
     def portal(self):
         return getToolByName(self.context, 'portal_url').getPortalObject()
+        
         
     def __call__(self):
         """
