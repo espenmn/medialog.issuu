@@ -1,7 +1,7 @@
 from zope.interface import implements, alsoProvides, noLongerProvides
 from Products.Five.browser import BrowserView
 from medialog.issuu.interfaces import IIssuuUtilProtected, \
-    IViewIssuu, IIssuuUtil
+    IIssuu, IIssuuUtil
 from Products.CMFCore.utils import getToolByName
 
 from plone.app.customerize import registration
@@ -24,13 +24,12 @@ class IssuuUtilProtected(BrowserView):
     implements(IIssuuUtilProtected)
     def enable(self):
         utils = getToolByName(self.context, 'plone_utils')
-        
-        if not IViewIssuu.providedBy(self.context):
-            alsoProvides(self.context, IViewIssuu)
+
+        if not IIssuu.providedBy(self.context):
+            alsoProvides(self.context, IIssuu)
             self.context.reindexObject(idxs=['object_provides'])
-            utils.addPortalMessage("You have added a issuu to this page. "
-                                   " To customize, click the 'Issuu Settings' button.")
-            self.request.response.redirect(self.context.absolute_url() + '/@@issuu-settings')
+            utils.addPortalMessage("You have issuued this file.")
+            self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')
             
         else:  
             self.request.response.redirect(self.context.absolute_url())
@@ -38,8 +37,8 @@ class IssuuUtilProtected(BrowserView):
     def disable(self):
         utils = getToolByName(self.context, 'plone_utils')
         
-        if IViewIssuu.providedBy(self.context):
-            noLongerProvides(self.context, IViewIssuu)
+        if IIssuu.providedBy(self.context):
+            noLongerProvides(self.context, IIssuu)
             self.context.reindexObject(idxs=['object_provides'])
             
             #now delete the annotation
@@ -50,18 +49,17 @@ class IssuuUtilProtected(BrowserView):
                 
             utils.addPortalMessage("Issuu removed.")
             
-        self.request.response.redirect(self.context.absolute_url())
+        self.request.response.redirect(self.context.absolute_url() + 'view')
         
         
 class IssuuUtil(BrowserView):
     """
-    a public traverable utility that checks if a 
-    slide is enabled
+    a public traverable utility that checks if it is enabled
     """
     implements(IIssuuUtil)
 
     def enabled(self):
-        return IViewIssuu.providedBy(self.context)    
+        return IIssuu.providedBy(self.context)    
 
 
     def view_enabled(self):

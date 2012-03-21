@@ -20,8 +20,8 @@ class IssuuSettingsForm(ploneformbase.EditForm):
     """
     form_fields = form.FormFields(IIssuuSettings)
       
-    label = _(u'heading_issuu_settings_form', default=u"Slider Settings")
-    description = _(u'description_issuu_settings_form', default=u"Configure the parameters for this issuu.")
-    form_name = _(u'title_issuu_settings_form', default=u"Slider settings")
+    label = _(u'heading_issuu_settings_form', default=u"Issuu Settings")
+    description = _(u'description_issuu_settings_form', default=u"Configure the parameters for this file.")
+    form_name = _(u'title_issuu_settings_form', default=u"Issuu settings")
     
     

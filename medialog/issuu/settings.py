@@ -7,16 +7,12 @@ except ImportError:
     #For Zope 2.9
     from zope.app.annotation.interfaces import IAnnotations
 
-
-
 from interfaces import IIssuuSettings
-
-
 
 
 class IssuuSettings(object):
     """
-    Copied from Nathan, lets see if it works.  
+    Copied from Nathan, let's see if it works.  
     """
     implements(IIssuuSettings)
     

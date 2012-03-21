@@ -2,13 +2,13 @@
 <object name="portal_actions" meta_type="Plone Actions Tool">
     <action-provider name="portal_actions">
 
-        <action title="Add Issuu" action_id="enable_issuu" category="object_buttons"
+        <action title="Add to issuu.com" action_id="enable_issuu" category="object_buttons"
             condition_expr="not: object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@enable_issuu" visible="True">
             <permission>medialog.issuu: Manage issuu settings</permission>
         </action>
 
-        <action title="Remove Issuu" action_id="disable_issuu" category="object_buttons"
+        <action title="Remove from issuu.com" action_id="disable_issuu" category="object_buttons"
             condition_expr="object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@disable_issuu" visible="True">
             <permission>medialog.issuu: Manage issuu settings</permission>
