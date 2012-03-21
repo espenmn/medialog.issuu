@@ -47,8 +47,8 @@ class IIssuuSettings(Interface):
     """
 
 
-    issuu_id = schema.TextLine(
-        title=_(u'label_issuu_id_title_issuu_setting', default=u"Width"),
+    issuu_id = schema.Text(
+        title=_(u'label_issuu_id_title_issuu_setting', default=u"Issuu ID"),
         description=_(u"label_issuu_id_description_issuu_setting", 
             default=u"The id for the document at issuu.com"),
         default='fd5164eb-0529-85ce-3b39-b61220296dc9',
