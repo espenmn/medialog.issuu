@@ -49,7 +49,7 @@ class IssuuUtilProtected(BrowserView):
                 
             utils.addPortalMessage("Issuu removed.")
             
-        self.request.response.redirect(self.context.absolute_url() + 'view')
+        self.request.response.redirect(self.context.absolute_url() + '/@@issuu_delete')
         
         
 class IssuuUtil(BrowserView):
