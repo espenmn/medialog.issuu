@@ -16,7 +16,7 @@ from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 
-
+from medialog.issuu.settings import IssuuSettings
 from medialog.issuu import issuuMessageFactory as _
 
 class IIssuuView(Interface):
@@ -35,7 +35,7 @@ class TestView(BrowserView):
     def __init__(self, context, request):
 		pass
 		
-    def __call__(self):
+    def __call__(self, context):
         """
         Dont ask.
         """     		
