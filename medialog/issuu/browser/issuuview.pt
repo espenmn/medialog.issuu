@@ -8,7 +8,8 @@
 				height view/height; 
 				issuu_id view/issuu_id;
 				the_id issuu_id">
-
+				
+ 
 <div>
     <object  style="width:420px;height:297px" id="" tal:attributes="id the_id" >
         <param name="movie" value="" 
@@ -28,6 +29,111 @@
     </object>
 
 </div> 
+
+ 
+ 
+ 
+         <script type="text/javascript" src="http://www.theajmonline.com.au/iir/book/book1/swfobject.js"></script>
+        <div>
+            <h1>Issuu Viewer 1.0</h1>
+            <div id ="myContent1" >alternative content here</div>
+            <span id="pNumber1">1</span>
+            <p>
+                <a href="#" onClick="document.getElementById('issuuViewer1').goToNextPage(); return false;">goToNextPage</a>
+                <a href="#" onClick="document.getElementById('issuuViewer1').goToFirstPage(); return false;">goToFirstPage</a>
+                <a href="#" onClick="document.getElementById('issuuViewer1').setPageNumber(2); return false;">Go to page two</a>
+            </p>  
+            <script type="text/javascript">
+    
+                var viewer1ChangeHandler = function() {
+                    var viewer = document.getElementById('issuuViewer1');
+                    var pageNumber = viewer.getPageNumber();
+                    document.getElementById('pNumber1').innerHTML = pageNumber;
+                }
+    
+                function myCallback1() {
+                    document.getElementById('issuuViewer1').addEventListener("change", "viewer1ChangeHandler");
+                }
+    
+                var attributes = {
+                    id: 'issuuViewer1'
+                };
+    
+                var params = {
+                    allowfullscreen: 'true',
+                    allowScriptAccess: 'always',
+                    menu: 'false'
+                };
+    
+                var flashvars = {
+                    jsAPIInitCallback: 'myCallback1',
+                    jsAPIClientDomain: 'issuu.com',
+                    mode: 'embed',
+                    layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
+                    showFlipBtn: 'true',
+                    documentId: '081219132433-764a1eafce5141fda136d10d58bd45f5',
+                    docName: '2008-12',
+                    username: 'press',
+                    loadingInfoText: 'Introducing%20Smart%20Look%20by%20Issuu',
+                    et: '1251881404594',
+                    er: '57'
+                };
+    
+                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "420", "264", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);
+    
+            </script>
+        </div>
+        <div>
+            <h1>Issuu Reader 2.0</h1>
+            <div id ="myContent2" >alternative content here</div>
+            <span id="pNumber2">1</span>
+            <p>
+                <a href="#" onClick="document.getElementById('issuuViewer2').goToNextPage(); return false;">goToNextPage</a>
+                <a href="#" onClick="document.getElementById('issuuViewer2').goToFirstPage(); return false;">goToFirstPage</a>
+                <a href="#" onClick="document.getElementById('issuuViewer2').setPageNumber(2); return false;">Go to page two</a>
+            </p>  
+            <script type="text/javascript">
+    
+                var viewer2ChangeHandler = function() {
+                    var viewer = document.getElementById('issuuViewer2');
+                    var pageNumber = viewer.getPageNumber();
+                    document.getElementById('pNumber2').innerHTML = pageNumber;
+                }
+    
+                function myCallback2() {
+                    document.getElementById('issuuViewer2').addEventListener("change", "viewer2ChangeHandler");
+                }
+    
+                var attributes = {
+                    id: 'issuuViewer2'
+                };
+    
+                var params = {
+                    allowfullscreen: 'true',
+                    allowScriptAccess: 'always',
+                    menu: 'false',
+                    wmode: 'transparent'
+                };
+    
+                var flashvars = {
+                    jsAPIInitCallback: 'myCallback2',
+                    jsAPIClientDomain: 'issuu.com',
+                    mode: 'mini',
+                    documentId: '081219132433-764a1eafce5141fda136d10d58bd45f5'
+                };
+    
+                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf", "myContent2", "420", "264", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);
+    
+            </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 </metal:body>
 </body>
