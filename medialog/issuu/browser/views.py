@@ -2,7 +2,6 @@ import requests
 from hashlib import md5
 #import json
 from cStringIO import StringIO
-from plone.memoize.instance import memoize
 
 try :
    # python 2.6
@@ -14,6 +13,7 @@ except ImportError:
 from zope.interface import implements, Interface
 
 from Products.Five import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
 from medialog.issuu import issuuMessageFactory as _
@@ -221,6 +221,28 @@ class IssuuView(BrowserView):
         Delete a folder.
         """
         raise NotImplementedError()       
+        
+        
+
+class IIssuuEmbedView(Interface):
+    """
+    issuu view interface
+    """
+
+    def test():
+        """ test method"""
 
 
+class IssuuEmbedView(BrowserView):
+    """
+    issuu browser that shows the embedded 'pdf' 
+    """
+    
+    template = ViewPageTemplateFile('issuuview.pt')
+
+    
+    def __init__(self, context, request):
+        self.somevalue = 'hello'
+        return self.template()
+        
         

@@ -8,12 +8,27 @@
 
   <!-- -*- extra stuff goes here. PS Permissions are wrong (look at the indented lines) -*- -->
  
-    <browser:page 
-    name="issuuview"
+   <browser:page 
+    name="issuuview_copy"
     for="*"
     permission="zope2.View"
     layer="medialog.issuu.interfaces.IIssuuLayer"
     template="issuuview.pt" />  
+    
+    
+    
+    
+    
+    
+    
+    
+  <browser:page 
+    name="issuuview"
+    for="*"
+    permission="zope2.View"
+    template="issuuview.pt"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+    />  
        
   <browser:page
       for="*"
@@ -24,15 +39,7 @@
       allowed_interface=".views.IIssuuView"
     />
 
-  <browser:page
-      for="*"
-      name="issuu_delete"
-      permission="zope2.View"
-      class=".views.IssuuView"
-      attribute="delete_document"
-      layer="medialog.issuu.interfaces.IIssuuLayer"
-      allowed_interface=".views.IIssuuView"
-    />
+ 
 
   <browser:page 
     name="enable_issuu"

@@ -8,6 +8,16 @@ from plone.app.customerize import registration
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.component import getMultiAdapter
 
+
+
+
+
+
+
+
+from medialog.issuu.settings import IssuuSettings
+
+
 try:
     #For Zope 2.10.4
     from zope.annotation.interfaces import IAnnotations
@@ -54,7 +64,7 @@ class IssuuUtilProtected(BrowserView):
         
 class IssuuUtil(BrowserView):
     """
-    a public traverable utility that checks if it is enabled
+    a public traverable utility that checks if it is enabled etc
     """
     implements(IIssuuUtil)
 
@@ -72,3 +82,7 @@ class IssuuUtil(BrowserView):
 
     def should_include(self):
         return self.enabled() or self.view_enabled()
+        
+        
+        
+        
