@@ -3,13 +3,6 @@ from hashlib import md5
 #import json
 from cStringIO import StringIO
 
-try :
-   # python 2.6
-   import json
-except ImportError:
-   # plone 3.3
-   import simplejson as json
-
 from zope.interface import implements, Interface
 
 from Products.Five import BrowserView
@@ -17,20 +10,38 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
 from medialog.issuu import issuuMessageFactory as _
+from medialog.issuu.settings import IssuuSettings
+
+try :
+   # python 2.6
+   import json
+except ImportError:
+   # plone 3.3
+   import simplejson as json
+   
+try:
+    #For Zope 2.10.4
+    from zope.annotation.interfaces import IAnnotations
+except ImportError:
+    #For Zope 2.9
+    from zope.app.annotation.interfaces import IAnnotations
+
+
 
 class IIssuuView(Interface):
     """
     issuu view interface
     """
 
-    def test():
-        """ test method"""
+    def settings():
+        """ settings method"""
 
 
 class IssuuView(BrowserView):
     """
-    issuu browser view
+    issuu browser view that takes care of communication with issuu.com
     """
+        
     def __init__(self, context, request):
         self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
@@ -55,6 +66,7 @@ class IssuuView(BrowserView):
         """        
         upload = self.upload_document()
         #set some settings to 'upload'
+        self.issuu_id = 'documentId' 
        
     def upload_document(self):
         """
@@ -69,6 +81,7 @@ class IssuuView(BrowserView):
             }
         )
         
+
         return response['_content']['document']['documentId']
 
     def _query(self, url, action, data=None):
@@ -229,20 +242,31 @@ class IIssuuEmbedView(Interface):
     issuu view interface
     """
 
-    def test():
-        """ test method"""
+    def settings():
+        """ settings method"""
 
 
 class IssuuEmbedView(BrowserView):
     """
     issuu browser that shows the embedded 'pdf' 
     """
-    
-    template = ViewPageTemplateFile('issuuview.pt')
-
+    implements(IIssuuEmbedView)    
+ 
     
     def __init__(self, context, request):
-        self.somevalue = 'hello'
-        return self.template()
-        
-        
+    	"""
+    		Maybe do something here ? 
+    	"""
+    	self.context = context
+        self.request = request
+        self.settings = IssuuSettings(context)
+        self.width = self.settings.width 
+        self.height = self.settings.height 
+        self.issuu_id = self.settings.issuu_id
+        self.issuu_value = 'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId=' + str(self.issuu_id)
+        self.issuu_url = 'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent" style="width:420px;height:297px" flashvars="mode=mini&documentId=' + str(self.issuu_id)
+    
+
+    
+
+    

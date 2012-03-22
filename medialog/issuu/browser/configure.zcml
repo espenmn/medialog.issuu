@@ -27,6 +27,7 @@
     for="*"
     permission="zope2.View"
     template="issuuview.pt"
+    class=".views.IssuuEmbedView"
     layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
        

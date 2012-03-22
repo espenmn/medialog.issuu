@@ -8,14 +8,7 @@ from plone.app.customerize import registration
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.component import getMultiAdapter
 
-
-
-
-
-
-
-
-from medialog.issuu.settings import IssuuSettings
+#from medialog.issuu.settings import IssuuSettings
 
 
 try:
