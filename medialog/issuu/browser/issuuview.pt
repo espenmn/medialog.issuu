@@ -6,21 +6,28 @@
 <metal:body fill-slot="content-core" 
 	tal:define="width  view/settings/width; 
 				height view/height; 
-				issuu_id view/issuu_id" >
+				issuu_id view/issuu_id;
+				the_id issuu_id">
 
 <div>
-    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="width:420px;height:297px" id="5b265645-0505-0bad-ce44-62430bea7802" >
-        <param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId=081219132433-764a1eafce5141fda136d10d58bd45f5" />
+    <object  style="width:420px;height:297px" id="" tal:attributes="id the_id" >
+        <param name="movie" value="" 
+        	tal:define="issuu_value python:'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId=' + the_id"
+        	tal:attributes="value issuu_value" />
         <param name="allowfullscreen" value="true"/>
         <param name="menu" value="false"/>
         <param name="wmode" value="transparent"/>
-        <embed src="" tal:attributes="src self.issuu_url"/>
+        <embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" 
+        allowfullscreen="true" 
+        menu="false" 
+        wmode="transparent" 
+        style="" 
+        flashvars=""		
+        tal:define="issuu_style python:'height:' + str(height) + 'px'; issuu_flashvars python:'mode=mini&documentId=' + the_id"
+        tal:attributes="style issuu_style; flashvars issuu_flashvars" />
     </object>
-    <div style="width:420px;text-align:left;">
-        <a href="http://issuu.com/press/docs/2008-12?mode=embed" target="_blank">Open publication</a>  
-    </div>
-</div>
-src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent" style="width:420px;height:297px" flashvars="mode=mini&documentId=081219132433-764a1eafce5141fda136d10d58bd45f5
+
+</div> 
 
 </metal:body>
 </body>

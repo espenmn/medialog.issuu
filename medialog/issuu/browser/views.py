@@ -66,7 +66,7 @@ class IssuuView(BrowserView):
         """        
         upload = self.upload_document()
         #set some settings to 'upload'
-        self.issuu_id = 'documentId' 
+        self._metadata[issuu_id] = 'documentId' 
        
     def upload_document(self):
         """
@@ -263,8 +263,7 @@ class IssuuEmbedView(BrowserView):
         self.width = self.settings.width 
         self.height = self.settings.height 
         self.issuu_id = self.settings.issuu_id
-        self.issuu_value = 'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId=' + str(self.issuu_id)
-        self.issuu_url = 'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent" style="width:420px;height:297px" flashvars="mode=mini&documentId=' + str(self.issuu_id)
+
     
 
     
