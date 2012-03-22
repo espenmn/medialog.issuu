@@ -189,14 +189,16 @@ class IssuuView(BrowserView):
         """
         raise NotImplementedError()
 
-    def delete_document(self):
+    def delete_document(self, context):
         """
         Delete a document.
 
         :param id: A string describing a document ID.
         """
+        self.context = context
+        self.settings = IssuuSettings(context)
+        id = self.settings.issuu_id
         
-        id = "120322214326-00b288a3eb7f4ae483052bfb46c76426" 
         self.delete_documents([id])
 
     def delete_documents(self, ids):
