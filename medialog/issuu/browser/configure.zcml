@@ -7,20 +7,8 @@
   <include package="plone.app.contentmenu" />
 
   <!-- -*- extra stuff goes here. PS Permissions are wrong (look at the indented lines) -*- -->
- 
-   <browser:page 
-    name="issuuview_copy"
-    for="*"
-    permission="zope2.View"
-    layer="medialog.issuu.interfaces.IIssuuLayer"
-    template="issuuview.pt" />  
-    
-    
-    
-    
-    
-    
-    
+
+  
     
   <browser:page 
     name="issuuview"
@@ -40,6 +28,15 @@
       allowed_interface=".views.IIssuuView"
     />
 
+  <browser:page
+      for="*"
+      name="issuu_delete"
+      permission="zope2.View"
+      class=".views.IssuuView"
+      attribute="delete_document"
+      layer="medialog.issuu.interfaces.IIssuuLayer"
+      allowed_interface=".views.IIssuuView"
+    />
  
 
   <browser:page 
