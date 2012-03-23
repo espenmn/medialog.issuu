@@ -18,6 +18,15 @@
     class=".views.IssuuEmbedView"
     layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
+
+  <browser:page 
+    name="issuufullscreen"
+    for="*"
+    permission="zope2.View"
+    template="issuufullscreen.pt"
+    class=".views.IssuuEmbedView"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+    />  
        
   <browser:page
       for="*"
