@@ -1,0 +1,10 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="medialog.issuu">
+<body>
+<div><object style="width:100%;height:100%" ><param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf?mode=embed&amp;layout=http%3A%2F%2Fskin.issuu.com%2Fv%2Fdark%2Flayout.xml&amp;showFlipBtn=true&amp;documentId=101209160738-bfd67b25284249cfb535c886beb7430b&amp;docName=gm_folder&amp;username=griegmedialogII&amp;loadingInfoText=Grieg%20Medialog&amp;et=1291911257135&amp;er=74" /><param name="allowfullscreen" value="true"/><param name="menu" value="false"/><embed src="http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" style="width:100%;height:100%" flashvars="mode=embed&amp;layout=http%3A%2F%2Fskin.issuu.com%2Fv%2Fdark%2Flayout.xml&amp;showFlipBtn=true&amp;documentId=101209160738-bfd67b25284249cfb535c886beb7430b&amp;docName=gm_folder&amp;username=griegmedialogII&amp;loadingInfoText=Grieg%20Medialog&amp;et=1291911257135&amp;er=74" /></object><div style="width:100%;text-align:left;"><a href="http://issuu.com/griegmedialogII/docs/gm_folder?mode=embed&amp;layout=http%3A%2F%2Fskin.issuu.com%2Fv%2Fdark%2Flayout.xml&amp;showFlipBtn=true" target="_blank">Open publication</a> - Free <a href="http://issuu.com" target="_blank">publishing</a> - <a href="http://issuu.com/search?q=grieg%20medialog" target="_blank">More grieg medialog</a></div></div>
+</metal:body>
+</body>
+</html>
+ 
