@@ -11,6 +11,7 @@ from Products.CMFCore.utils import getToolByName
 
 from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
+from medialog.issuu.settings import IIssuuSettings
 
 try :
    # python 2.6
@@ -41,6 +42,7 @@ class IssuuView(BrowserView):
     """
     issuu browser view that takes care of communication with issuu.com
     """
+    implements(IIssuuSettings)
         
     def __init__(self, context, request):
         self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
@@ -66,7 +68,7 @@ class IssuuView(BrowserView):
         """        
         upload = self.upload_document()
         #set some settings to 'upload'
-        self._metadata[issuu_id] = 'documentId' 
+        _setattr__('issu_id', '123 ')
        
     def upload_document(self):
         """
