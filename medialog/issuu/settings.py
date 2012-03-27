@@ -42,10 +42,9 @@ class IssuuSettings(object):
             self._metadata[name] = value
 
     def __getattr__(self, name):
-        value = self._metadata.get(name)
-        if value is None:
-            for interface in self.interfaces:
-                v = interface.get(name)
-                if v:
-                    return v.default
-        return value
+       value = self._metadata.get(name)
+       if value is None:
+           v = IIssuuSettings.get(name)
+           if v:
+               return v.default
+       return value
