@@ -68,7 +68,8 @@ class IssuuView(BrowserView):
         """        
         upload = self.upload_document()
         #set some settings to 'upload'
-        self._setattr__('issu_id', '123 ')
+        self.__setattr__('issu_id', '123 ')
+        self.__dict__['issuu_id'] = value = '1234'
        
     def upload_document(self):
         """
