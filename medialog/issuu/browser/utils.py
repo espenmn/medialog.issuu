@@ -31,7 +31,7 @@ class IssuuUtilProtected(BrowserView):
         if not IIssuu.providedBy(self.context):
             alsoProvides(self.context, IIssuu)
             self.context.reindexObject(idxs=['object_provides'])
-            utils.addPortalMessage("You have issuued this file.")
+            utils.addPortalMessage("You have uploaded this file to issuu.com. You will have to wait a little before before the doucment is found (issuu.com has to process it).")
             self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')
             
         else:  

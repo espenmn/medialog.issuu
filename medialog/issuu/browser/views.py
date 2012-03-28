@@ -94,8 +94,7 @@ class IssuuView(BrowserView):
 
         #set some settings from 'upload'
 
-        #issuu_response = response['_content']['document']['documentId']
-        issuu_response = response['documentId']
+        issuu_response = response['_content']['document']['documentId']
         self.settings.issuu_id = str(issuu_response)
         
     def _query(self, url, action, data=None):
