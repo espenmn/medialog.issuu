@@ -46,19 +46,19 @@ class IIssuuSettings(Interface):
     The actual issuuview settings
     """
     
-    width = schema.Int(
-        title=_(u'label_width_title_issuu_setting', default=u"Width"),
+    width = schema.TextLine(
+        title=_(u"label_width_title_issuu_setting", default=u"Width"),
         description=_(u"label_width_description_issuu_setting", 
             default=u"The fixed width of the issuu."),
-        default=600,
+        default=u"600px",
         required=True
     )
 
-    height = schema.Int(
+    height = schema.TextLine(
         title=_(u'label_height_title_issuu_setting', default=u"Height"),
         description=_(u"label_height_description_issuu_setting", 
             default=u"The fixed height of the issuu."),
-        default=400,
+        default=u"400px",
         required=True
     )
  
