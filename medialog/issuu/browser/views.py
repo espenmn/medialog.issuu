@@ -234,12 +234,35 @@ class IssuuFlashView(BrowserView):
         self.width = self.settings.width 
         self.height = self.settings.height 
         self.issuu_id = self.settings.issuu_id
-        #this is ugly, but I could not get view/javascript to work in the template
-        self.js = self.javascript(self)
 
 
  	def javascript(self):
-    	"""
-    		Not sure about this   
-    	""" 	
-		return """<h1>hallos</h1>"""
+		return u"""<h1>hallos</h1>
+ <script type="text/javascript" src="http://www.theajmonline.com.au/iir/book/book1/swfobject.js"></script>
+        <script type="text/javascript">
+                var attributes = {
+                    id: 'issuuViewer1'
+                };
+    
+                var params = {
+                    allowfullscreen: 'true',
+                    allowScriptAccess: 'always',
+                    menu: 'false'
+                };
+    
+                var flashvars = {
+                    jsAPIClientDomain: 'issuu.com',
+                    mode: 'embed',
+                    layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
+                    showFlipBtn: 'true',
+                    documentId: %(issuu_id)s,
+                };
+    
+                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "200", "600", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);
+    
+            </script>
+"""  % {
+ 		'issuu_id': self.settings.issuu_id,
+ 		'width': self.settings.width,
+ 		'height': self.settings.height,
+}
