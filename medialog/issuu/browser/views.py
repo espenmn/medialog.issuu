@@ -74,8 +74,7 @@ class IssuuView(BrowserView):
         Upload current (pdf) file.
         """        
         upload = self.upload_document()
-        #set some settings from 'upload'
-        self.settings.issuu_id = '122343'
+        #change view now that the pdf exists on issuu.com
         self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         
        
@@ -93,8 +92,12 @@ class IssuuView(BrowserView):
         )
         
 
-        return response['_content']['document']['documentId']
+        #set some settings from 'upload'
 
+        #issuu_response = response['_content']['document']['documentId']
+        issuu_response = response['documentId']
+        self.settings.issuu_id = str(issuu_response)
+        
     def _query(self, url, action, data=None):
         """
         Low-level access to the Issuu API.
