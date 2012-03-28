@@ -1,0 +1,101 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="medialog.issuu">
+
+  <include package="plone.app.contentmenu" />
+
+  <!-- -*- extra stuff goes here. PS Permissions are wrong (look at the indented lines) -*- -->
+
+  
+    
+  <browser:page 
+    name="issuuview"
+    for="*"
+    permission="zope2.View"
+    template="issuuview.pt"
+    class=".views.IssuuEmbedView"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+    />  
+
+  <browser:page 
+    name="issuufullscreen"
+    for="*"
+    permission="zope2.View"
+    template="issuufullscreen.pt"
+    class=".views.IssuuEmbedView"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+    />  
+       
+  <browser:page
+      for="*"
+      name="issuu_upload"
+      permission="zope2.View"
+      class=".views.IssuuView"
+      layer="medialog.issuu.interfaces.IIssuuLayer"
+      allowed_interface=".views.IIssuuView"
+    />
+
+  <browser:page
+      for="*"
+      name="issuu_delete"
+      permission="zope2.View"
+      class=".views.IssuuView"
+      attribute="delete_document"
+      layer="medialog.issuu.interfaces.IIssuuLayer"
+      allowed_interface=".views.IIssuuView"
+    />
+ 
+
+  <browser:page 
+    name="enable_issuu"
+    for="*"
+          permission="zope2.View"
+    allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
+    attribute="enable"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+    class=".utils.IssuuUtilProtected" />
+    
+  <browser:page 
+    name="disable_issuu"
+    for="*"
+         permission="zope2.View"
+    allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
+    attribute="disable"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+    class=".utils.IssuuUtilProtected" />
+    
+   <browser:page 
+     name="issuu_util"
+     for="*"
+     permission="zope2.View"
+     allowed_interface="medialog.issuu.interfaces.IIssuuUtil"
+     layer="medialog.issuu.interfaces.IIssuuLayer"
+     class=".utils.IssuuUtil" />
+     
+     
+  <browser:page
+    name="issuu-settings"
+    for="medialog.issuu.interfaces.IIssuu"
+    class=".forms.IssuuSettingsForm"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+             permission="zope2.View"/>
+     
+  <adapter 
+    for="medialog.issuu.interfaces.IIssuu"
+    provides="medialog.issuu.interfaces.IIssuuSettings"
+    factory="medialog.issuu.settings.IssuuSettings" />
+    
+       
+  <browser:menuItem
+    for="medialog.issuu.interfaces.IIssuu"
+    menu="plone_displayviews"
+    title="Issuu View"
+    action="issuuview"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+    description="Shows the content the Issuu Way embedded." />
+
+
+ 
+</configure>
