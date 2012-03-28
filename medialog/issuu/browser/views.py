@@ -218,11 +218,21 @@ class IssuuEmbedView(BrowserView):
         self.issuu_id = self.settings.issuu_id
 
 
+class IIssuuFlashView(Interface):
+    """
+    issuu flashview interface
+    """
+
+    def javascript():
+        """
+        content to be included in javascript area of template
+        """
 
 class IssuuFlashView(BrowserView):
     """
     issuu browser view that shows the embedded 'pdf' 
     """
+    implements(IIssuuFlashView)
         
     def __init__(self, context, request):
     	"""

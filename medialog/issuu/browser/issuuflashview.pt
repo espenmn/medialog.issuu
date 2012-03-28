@@ -14,7 +14,7 @@
 				the_id issuu_id">
 
  <div id ="myContent1" >This is replaced with the pdf</div>
-   <tal:replace tal:replace="structure view/js" />
+   <tal:replace tal:replace="structure view/settings/javascript" />
 
 </metal:body>
 </body>
