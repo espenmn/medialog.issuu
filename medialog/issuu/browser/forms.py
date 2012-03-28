@@ -10,8 +10,6 @@ from plone.app.form import base as ploneformbase
 from medialog.issuu.interfaces import IIssuuSettings 
 from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
-
-    
   
 
 class IssuuSettingsForm(ploneformbase.EditForm):

@@ -27,6 +27,7 @@ class IIssuuUtilProtected(Interface):
         """
         disable issuu on this object
         """
+        self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=file_view')
 
 
 class IIssuuUtil(Interface):

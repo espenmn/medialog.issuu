@@ -1,3 +1,7 @@
+from Acquisition import aq_inner
+
+
+
 import requests
 from hashlib import md5
 #import json
@@ -197,27 +201,14 @@ class IssuuView(BrowserView):
         )
 
 
-        
-
-class IIssuuEmbedView(Interface):
-    """
-    issuu view interface
-    """
-
-    def settings():
-        """ settings method"""
-
-
 class IssuuEmbedView(BrowserView):
     """
     issuu browser that shows the embedded 'pdf' 
     """
-    implements(IIssuuEmbedView)    
- 
-    
+
     def __init__(self, context, request):
     	"""
-    		Maybe do something here ? 
+    		Think all this is needed, should probably add some more, like background color, menu etc. 
     	"""
     	self.context = context
         self.request = request
@@ -226,8 +217,29 @@ class IssuuEmbedView(BrowserView):
         self.height = self.settings.height 
         self.issuu_id = self.settings.issuu_id
 
-    
 
-    
 
-    
+class IssuuFlashView(BrowserView):
+    """
+    issuu browser view that shows the embedded 'pdf' 
+    """
+        
+    def __init__(self, context, request):
+    	"""
+    		Not sure about this   
+    	"""
+    	self.context = context
+    	self.request = request
+        self.settings = IssuuSettings(context)
+        self.width = self.settings.width 
+        self.height = self.settings.height 
+        self.issuu_id = self.settings.issuu_id
+        #this is ugly, but I could not get view/javascript to work in the template
+        self.js = self.javascript(self)
+
+
+ 	def javascript(self):
+    	"""
+    		Not sure about this   
+    	""" 	
+		return """<h1>hallos</h1>"""

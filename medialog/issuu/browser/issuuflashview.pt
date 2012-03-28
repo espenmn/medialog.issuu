@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="medialog.issuu">
+  <head>
+   </head>
+
+<body>
+<metal:body fill-slot="content-core" 
+	tal:define="width  view/settings/width; 
+				height view/settings/height; 
+				issuu_id view/settings/issuu_id;
+				the_id issuu_id">
+
+ <div id ="myContent1" >This is replaced with the pdf</div>
+ 
+</metal:body>
+</body>
+</html>
