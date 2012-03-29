@@ -248,7 +248,7 @@ class IssuuFlashView(BrowserView):
 
  	def javascript(self):
 		return u"""<h1>hallos</h1>
- <script type="text/javascript" src="http://www.theajmonline.com.au/iir/book/book1/swfobject.js"></script>
+ <script type="text/javascript" src="http://www.theajmonline.com.au/iir/book/book1/swfobject.js" />
         <script type="text/javascript">
                 var attributes = {
                     id: 'issuuViewer1'
