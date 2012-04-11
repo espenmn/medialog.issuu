@@ -3,7 +3,13 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="medialog.issuu">
   <head>
-   <tal:replace tal:replace="structure view/javascript" />
+  
+  
+    <metal:js fill-slot="javascript_head_slot">
+    <tal:replace tal:replace="structure view/javascript" />
+  </metal:js>
+  
+   
   </head>
 
 <body>
@@ -15,8 +21,7 @@
 
  <div id ="myContent1" >This is replaced with the pdf</div>
  
-hallo
-   <tal:replace tal:replace="structure view/settings/issuu_id" />
+ 
 </metal:body>
 </body>
 </html>
