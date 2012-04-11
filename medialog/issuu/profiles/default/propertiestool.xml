@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="issuu_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="issuu_key" type="string">y70fz64msx5z2v2hwvo0i2qno1la4vdt</property> 
+  <property name="issuu_secret" type="string">2dx2stidj8auzzm3i1rcr8wmrnpyiq6q</property> 
+  </object>
+</object>    

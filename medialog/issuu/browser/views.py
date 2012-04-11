@@ -49,7 +49,8 @@ class IssuuView(BrowserView):
     implements(IIssuuSettings)
         
     def __init__(self, context, request):
-        self.key='y70fz64msx5z2v2hwvo0i2qno1la4vdt'
+        issuu_properties = getToolByName(context, 'portal_properties').issuu_properties  
+        self.key=issuu_properties.issuu_key
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         self.title = context.title
         self.context=context

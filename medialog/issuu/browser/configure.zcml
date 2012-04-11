@@ -41,7 +41,7 @@
   <browser:page
       for="*"
       name="issuu_upload"
-      permission="zope2.View"
+      permission="medialog.issuu.ManageIssuuSettings"
       class=".views.IssuuView"
       layer="medialog.issuu.interfaces.IIssuuLayer"
       allowed_interface=".views.IIssuuView"
@@ -50,7 +50,7 @@
   <browser:page
       for="*"
       name="issuu_delete"
-      permission="zope2.View"
+      permission="medialog.issuu.ManageIssuuSettings"
       class=".views.IssuuView"
       attribute="delete_document"
       layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -61,7 +61,7 @@
   <browser:page 
     name="enable_issuu"
     for="*"
-          permission="zope2.View"
+    permission="medialog.issuu.ManageIssuuSettings"
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="enable"
     layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -70,7 +70,7 @@
   <browser:page 
     name="disable_issuu"
     for="*"
-         permission="zope2.View"
+    permission="medialog.issuu.ManageIssuuSettings"
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="disable"
     layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -79,7 +79,7 @@
    <browser:page 
      name="issuu_util"
      for="*"
-     permission="zope2.View"
+     permission="medialog.issuu.ManageIssuuSettings"
      allowed_interface="medialog.issuu.interfaces.IIssuuUtil"
      layer="medialog.issuu.interfaces.IIssuuLayer"
      class=".utils.IssuuUtil" />
@@ -90,7 +90,7 @@
     for="medialog.issuu.interfaces.IIssuu"
     class=".forms.IssuuSettingsForm"
     layer="medialog.issuu.interfaces.IIssuuLayer"
-             permission="zope2.View"/>
+    permission="medialog.issuu.ManageIssuuSettings"/>
      
   <adapter 
     for="medialog.issuu.interfaces.IIssuu"
@@ -104,7 +104,7 @@
     title="Issuu View"
     action="issuuview"
     layer="medialog.issuu.interfaces.IIssuuLayer"
-    description="Shows the content the Issuu Way embedded." />
+    description="Shows the content the Issuu Way- embedded." />
 
 
  
