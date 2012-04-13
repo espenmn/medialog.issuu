@@ -3,7 +3,7 @@
     <action-provider name="portal_actions">
 
         <action title="Add to issuu.com" action_id="enable_issuu" category="object_buttons"
-            condition_expr="not: object/@@issuu_util/enabled"
+            condition_expr="object/@@issuu_util/is_pdf"
             url_expr="string:${object_url}/@@enable_issuu" visible="True">
             <permission>medialog.issuu: Manage issuu settings</permission>
         </action>
@@ -17,7 +17,7 @@
 		<action title="Issuu Settings" action_id="issuu_settings" category="object"
             condition_expr="object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@issuu-settings" visible="True">
-            <permission>medialog.issuu: Manage issuu settings</permission>
+            <permission>collective.easyslider: Manage slider settings</permission>
         </action>
 
     </action-provider>

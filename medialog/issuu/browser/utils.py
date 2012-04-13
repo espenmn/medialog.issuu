@@ -72,10 +72,15 @@ class IssuuUtil(BrowserView):
         except:
             return False
 
-
     def should_include(self):
         return self.enabled() or self.view_enabled()
         
-        
-        
-        
+    
+    def is_pdf(self, context=None):
+        if context is None:
+            context = self.context
+            
+        if self.enabled()==False and hasattr(context, 'getContentType'):
+            return context.getContentType() in ('application/pdf', 'application/x-pdf', 'image/pdf')
+        else:
+            return False    
