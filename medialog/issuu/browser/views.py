@@ -289,3 +289,157 @@ class IssuuFlashView(BrowserView):
  		'width': self.settings.width,
  		'height': self.settings.height,
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class IssuuDeleteView(BrowserView):
+    """
+    issuu browser view that takes care of communication with issuu.com
+    """
+    implements(IIssuuSettings)
+        
+    def __init__(self, context, request):
+        #the issuu settings are stored in portal properties
+        issuu_properties = getToolByName(context, 'portal_properties').issuu_properties  
+        self.key=issuu_properties.issuu_key
+        self.secret=issuu_properties.issuu_secret
+        self.title = context.title
+        self.context=context               
+        self.request = request
+        self.settings = IssuuSettings(context)
+
+        self.issuu_id = self.settings.issuu_id
+
+        
+    @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
+    @property
+    def portal(self):
+        return getToolByName(self.context, 'portal_url').getPortalObject()
+        
+        
+    def __call__(self):
+        """
+        Upload current (pdf) file.
+        """       
+        issuu_id = self.settings.issuu_id 
+        self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.document.delete',
+            data = {
+                'names': '120416145415-e4bf115d16a94a5da901bcd9387b8376'
+            }
+        )
+        
+       
+ 
+        
+    def _query(self, url, action, data=None):
+        """
+        Low-level access to the Issuu API.
+        """
+        if not data:
+            data = {}
+
+        data.update({
+            'apiKey': self.key,
+            'format': 'json',
+            'action': action
+        })
+
+        data['signature'] = self._sign(data)
+
+        files = {}
+
+        for key in data:
+            if hasattr(data[key], 'read'):
+                files[key] = data[key]
+
+        for key in files:
+            data.pop(key)
+
+        response = requests.post(
+            url = url,
+            data = data,
+            files = files
+        )
+
+        try:
+            data = json.loads(response.content)['rsp']
+        except ValueError:
+            raise self.Error('API response could not be parsed as JSON: %s' % response.content)
+
+        if data['stat'] == 'fail':
+            raise self.Error(data['_content']['error']['message'])
+        else:
+            return data
+
+    def _sign(self, data):
+        """
+        Create a signature of the given ``data``.
+        """
+        signature = self.secret
+
+        data.update({
+            'apiKey': self.key
+        })
+
+        keys = data.keys()
+
+        for key in sorted(keys):
+            if isinstance(data[key], (str, unicode)):
+                signature += key + data[key]
+
+        mysign = md5(signature).hexdigest()
+        return mysign
+        
+        
+    class Error(StandardError):
+        pass
+        
+ 
+ 
