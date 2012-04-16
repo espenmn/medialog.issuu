@@ -10,6 +10,14 @@ class IIssuuLayer(Interface):
     marker interface for issuu layer
     
     """
+    
+
+class IIsPDFLayer(Interface):
+    """
+    marker interface for only pdf files
+    
+    """
+    
 class IIssuu(Interface):
     """
     marker interface for content types that can use

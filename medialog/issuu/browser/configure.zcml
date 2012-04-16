@@ -18,6 +18,19 @@
     class=".views.IssuuEmbedView"
     layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
+
+   <subscriber
+        for="medialog.issuu.interfaces.IIssuuLayer
+	     zope.traversing.interfaces.IBeforeTraverseEvent"
+        handler=".subscriber.apply_pdfmarker" />
+
+  <browser:page
+        for="medialog.issuu.interfaces.IIssuuLayer"
+        layer="medialog.issuu.interfaces.IIsPDFLayer"
+        name="pdf_view"
+        permission="zope2.View"
+        template="issuuflashview.pt"
+        class=".views.IssuuFlashView" />
         
   <browser:page
       for="*"
