@@ -8,25 +8,25 @@
 
   <!-- -*- extra stuff goes here. PS Permissions are wrong (look at the indented lines) -*- -->
 
-  
+   <subscriber
+        for="Products.ATContentTypes.interface.file.IFileContent
+	     zope.traversing.interfaces.IBeforeTraverseEvent"
+        handler=".subscriber.apply_pdfmarker" />  
     
   <browser:page 
-    name="issuuview"
-    for="*"
-    permission="zope2.View"
-    template="issuuview.pt"
-    class=".views.IssuuEmbedView"
-    layer="medialog.issuu.interfaces.IIssuuLayer"
+    	name="issuuview"
+  	 for="medialog.issuu.interfaces.IIssuu"
+  	 permission="zope2.View"
+  	 template="issuuview.pt"
+  	 class=".views.IssuuEmbedView"
+  	 layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
 
-   <subscriber
-        for="medialog.issuu.interfaces.IIssuuLayer
-	     zope.traversing.interfaces.IBeforeTraverseEvent"
-        handler=".subscriber.apply_pdfmarker" />
+
 
   <browser:page
-        for="medialog.issuu.interfaces.IIssuuLayer"
-        layer="medialog.issuu.interfaces.IIsPDFLayer"
+        for="Products.ATContentTypes.interface.file.IFileContent"
+        layer="..interfaces.IIsPDFLayer"
         name="pdf_view"
         permission="zope2.View"
         template="issuuflashview.pt"
@@ -112,13 +112,22 @@
     
        
   <browser:menuItem
-    for="medialog.issuu.interfaces.IIssuu"
+    for="Products.ATContentTypes.interface.file.IFileContent"
     menu="plone_displayviews"
     title="Issuu View"
     action="issuuview"
     layer="medialog.issuu.interfaces.IIssuuLayer"
     description="Shows the content the Issuu Way- embedded." />
 
+  <browser:menuItem
+    for="Products.ATContentTypes.interface.file.IFileContent"
+    menu="plone_displayviews"
+    title="Issuu View II"
+    action="pdf_view"
+    layer="medialog.issuu.interfaces.IIssuuLayer"
+    description="Shows the content the Issuu Way - embedded, too." />
+
+ 
 
  
 </configure>

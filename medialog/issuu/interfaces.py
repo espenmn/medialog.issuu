@@ -21,7 +21,7 @@ class IIsPDFLayer(Interface):
 class IIssuu(Interface):
     """
     marker interface for content types that can use
-    easyissuu view
+    issuu view
     """
 
 class IIssuuUtilProtected(Interface):
