@@ -49,12 +49,12 @@ class IssuuView(BrowserView):
     implements(IIssuuSettings)
         
     def __init__(self, context, request):
+        #the issuu settings are stored in portal properties
         issuu_properties = getToolByName(context, 'portal_properties').issuu_properties  
         self.key=issuu_properties.issuu_key
-        self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
+        self.secret=issuu_properties.issuu_secret
         self.title = context.title
-        self.context=context
-               
+        self.context=context               
         self.request = request
         self.settings = IssuuSettings(context)
         
@@ -96,7 +96,8 @@ class IssuuView(BrowserView):
         )
         
 
-        #set some settings we got back from from 'the upload to issuu'
+        #save settings we got back from from 'the upload to issuu'
+        #should probably only include documentID
 
         issuu_response = response['_content']['document']['documentId']
         self.settings.issuu_id = str(issuu_response)
@@ -174,17 +175,29 @@ class IssuuView(BrowserView):
             action = 'issuu.documents.list'
         )
 
-    def delete_document(self, context):
+    def delete_document(self, context=None):
         """
         Delete a document.
 
         :param id: A string describing a document ID.
         """
-        self.context = context
+        if context is None:
+            context = self.context
+
+        #do I need the next line ?
         self.settings = IssuuSettings(context)
-        id = self.issuu_id
+        issuu_id = self.settings.issuu_id
+        issuu_id = '#' + issuu_id
         
-        self.delete_documents([id])
+        #Did not work
+        #self.delete_documents([id])
+        self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.document.delete',
+            data = {
+                'names': issuu_id
+            }
+        )
 
     def delete_documents(self, ids):
         """
