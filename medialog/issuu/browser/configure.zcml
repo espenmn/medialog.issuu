@@ -50,7 +50,8 @@
       for="*"
       name="issuu_delete"
       permission="medialog.issuu.ManageIssuuSettings"
-      class=".views.IssuuDeleteView"
+      class=".views.IssuuView"
+      attribute="delete_document"
       layer="medialog.issuu.interfaces.IIssuuLayer"
       allowed_interface=".views.IIssuuView"
     />
