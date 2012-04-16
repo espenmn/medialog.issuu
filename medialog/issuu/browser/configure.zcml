@@ -8,11 +8,6 @@
 
   <!-- -*- extra stuff goes here. PS Permissions are wrong (look at the indented lines) -*- -->
 
-   <subscriber
-        for="Products.ATContentTypes.interface.file.IFileContent
-	     zope.traversing.interfaces.IBeforeTraverseEvent"
-        handler=".subscriber.apply_pdfmarker" />  
-    
   <browser:page 
     	name="issuuview"
   	 for="medialog.issuu.interfaces.IIssuu"
@@ -23,15 +18,6 @@
     />  
 
 
-
-  <browser:page
-        for="Products.ATContentTypes.interface.file.IFileContent"
-        layer="..interfaces.IIsPDFLayer"
-        name="pdf_view"
-        permission="zope2.View"
-        template="issuuflashview.pt"
-        class=".views.IssuuFlashView" />
-        
   <browser:page
       for="*"
       name="issuu_flashview"

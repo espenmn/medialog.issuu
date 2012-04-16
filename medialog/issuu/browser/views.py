@@ -54,15 +54,14 @@ class IssuuView(BrowserView):
         self.secret='2dx2stidj8auzzm3i1rcr8wmrnpyiq6q'
         self.title = context.title
         self.context=context
-        
-        
-        
+               
         self.request = request
         self.settings = IssuuSettings(context)
         
-        
         #thanks to nathan for this line
         #remember 'open' takes a file (ONLY)
+        #PS it is probably easier to use upload with URL (issuu.com supportst that)
+        #but this would not work on closed networks / intranet.
         self.file = StringIO(str(context.getFile().data))
         
     @property
@@ -97,7 +96,7 @@ class IssuuView(BrowserView):
         )
         
 
-        #set some settings from 'upload'
+        #set some settings we got back from from 'the upload to issuu'
 
         issuu_response = response['_content']['document']['documentId']
         self.settings.issuu_id = str(issuu_response)

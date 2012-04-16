@@ -11,17 +11,11 @@ class IIssuuLayer(Interface):
     
     """
     
-
-class IIsPDFLayer(Interface):
-    """
-    marker interface for only pdf files
-    
-    """
     
 class IIssuu(Interface):
     """
     marker interface for content types that can use
-    issuu view
+    issuu view (probably only pdf files)
     """
 
 class IIssuuUtilProtected(Interface):
