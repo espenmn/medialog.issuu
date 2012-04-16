@@ -2,5 +2,6 @@
 <object name="File">
     <property name="view_methods" purge="False">
         <element value="issuuview"/>
+        <element value="issuu_fullscreen_view"/>
     </property>
 </object>
