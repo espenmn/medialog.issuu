@@ -11,10 +11,10 @@
 				issuu_id view/issuu_id;
 				the_id issuu_id">
 				 
-<div>
-    <object   id="" tal:attributes="id the_id" >
+  <metal:main_macro define-macro="main">
+    <object  id="" tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height)" tal:attributes="style issuu_style; id the_id" >
         <param name="movie" value="" 
-        	tal:define="issuu_value python:'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId=' + the_id"
+        	tal:define="issuu_value python:'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;autoFlip=true&amp;printButtonEnabled=true&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
         	tal:attributes="value issuu_value" />
         <param name="allowfullscreen" value="true"/>
         <param name="menu" value="false"/>
@@ -25,11 +25,12 @@
         wmode="transparent" 
         style="" 
         flashvars=""		
-        tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height) ; issuu_flashvars python:'mode=mini&documentId=' + the_id"
+        tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height) ; issuu_flashvars python:'mode=mini&amp;autoFlip=true&amp;printButtonEnabled=false&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
         tal:attributes="style issuu_style; flashvars issuu_flashvars" />
     </object>
+ 
 
-</div> 
+  </metal:main_macro>
 
 </metal:body>
 </body>
