@@ -5,3 +5,20 @@ Changelog
 -------------------
 
 - Initial release
+
+
+0.1.1 dev (2012.04.17)
+-------------------
+
+- Added fullscreenview
+- Fixed bug so the width works in Safari
+
+
+
+To DO:
+Find a way to get the name from issuu.comm, so it is possible to delete and / or update the pdf.
+Write tests (Could need some help here)
+Make "flashview (swobject)
+Make different layouts an more settings (background color, enable print etc9
+
+

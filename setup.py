@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This module contains the tool of medialog.issuu
+This module contains medialog.issuu, a plone product to show pdf files in plone with issuu.com 's viewer.
 """
 import os
 from setuptools import setup, find_packages
@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '0.1'
+version = '0.1.1'
 
 long_description = (
     read('README.txt'))
@@ -18,7 +18,7 @@ tests_require = ['zope.testing']
 
 setup(name='medialog.issuu',
       version=version,
-      description="The goal is to make plone work with www.issuu.com",
+      description="The goal is to integrate issuu.com's API with plone",
       long_description=long_description,
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
