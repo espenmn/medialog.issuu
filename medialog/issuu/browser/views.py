@@ -186,14 +186,13 @@ class IssuuView(BrowserView):
         #do I need the next line ?
         self.settings = IssuuSettings(context)
         issuu_id = self.settings.issuu_id
-        issuu_id = issuu_id
         
         #find document name on issuu.com
         #because the original name changes after the pdf has been processed.
         
         response = self._query(
             url = 'http://api.issuu.com/1_0',
-            action = 'issuu.documents.list',
+            action = 'issuu.document.list',
             data = {
                 'documentId': issuu_id,
             }
