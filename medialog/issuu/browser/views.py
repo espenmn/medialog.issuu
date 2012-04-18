@@ -93,14 +93,13 @@ class IssuuView(BrowserView):
                 'file': self.file,
                 'title': self.title,
             }
-        )
-        
+        )        
 
         #save settings we got back from from 'the upload to issuu'
         #should probably only include documentID
-
-        issuu_response = response['_content']['document']['documentId']
-        self.settings.issuu_id = str(issuu_response)
+        issuu_response = response['_content']['document']
+        my_issuu_id = issuu_response['documentId']
+        self.settings.issuu_id = my_issuu_id
         
     def _query(self, url, action, data=None):
         """
@@ -186,10 +185,23 @@ class IssuuView(BrowserView):
 
         #do I need the next line ?
         self.settings = IssuuSettings(context)
-        #issuu_id = self.settings.issuu_id
-        #issuu_id = issuu_id
-        #found no way to delete object based on ID
-        issuu_id = self.title
+        issuu_id = self.settings.issuu_id
+        issuu_id = issuu_id
+        
+        #find document name on issuu.com
+        #because the original name changes after the pdf has been processed.
+        
+        response = self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.documents.list',
+            data = {
+                'documentId': issuu_id,
+            }
+        )        
+
+        document_name = response['_content']
+        #['document']['name']
+        print document_name
         
         #Did not work
         #self.delete_documents([id])
@@ -197,7 +209,7 @@ class IssuuView(BrowserView):
             url = 'http://api.issuu.com/1_0',
             action = 'issuu.document.delete',
             data = {
-                'names': issuu_id,
+                'names': document_name,
             }
         )
 
