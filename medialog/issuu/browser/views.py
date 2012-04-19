@@ -85,15 +85,15 @@ class IssuuView(BrowserView):
         """
         Upload the given ``file``.
         """
-        self.issuu_name = str(self.title) + str(random.randint(10000,99999))
-        issuu_name = self.issuu_name
+        self.issuu_name = str(random.randint(1000000000000,9000000000000))
+        
         response = self._query(
             url = 'http://upload.issuu.com/1_0',
             action = 'issuu.document.upload',
             data = {
                 'file': self.file,
                 'title': self.title,
-                'name' : 'myname',
+                'name' : self.issuu_name,
             }
         )        
 
@@ -210,6 +210,16 @@ class IssuuView(BrowserView):
             }
         )
 
+class IIssuuEmbedView(Interface):
+    """
+    issuu embed / flashview interface
+    """
+
+    def javascript():
+        """
+        content to be included in javascript area of template
+        """
+
 
 class IssuuEmbedView(BrowserView):
     """
@@ -218,7 +228,7 @@ class IssuuEmbedView(BrowserView):
 
     def __init__(self, context, request):
     	"""
-    		Think all this is needed, should probably add some more, like background color, menu etc. 
+    		I Think all this is needed, should probably add some more, like background color, menu etc. 
     	"""
     	self.context = context
         self.request = request
@@ -228,40 +238,14 @@ class IssuuEmbedView(BrowserView):
         self.issuu_id = self.settings.issuu_id
 
 
-class IIssuuFlashView(Interface):
-    """
-    issuu flashview interface
-    """
-
-    def javascript():
+    def javascript(self):
         """
-        content to be included in javascript area of template
-        """
-
-class IssuuFlashView(BrowserView):
-    """
-    issuu browser view that shows the embedded 'pdf' 
-    """
-    implements(IIssuuFlashView)
-        
-    def __init__(self, context, request):
+    		We need this javascript for the swf view
     	"""
-    		Not sure about this   
-    	"""
-    	self.context = context
-    	self.request = request
-        self.settings = IssuuSettings(context)
-        self.width = self.settings.width 
-        self.height = self.settings.height 
-        self.issuu_id = self.settings.issuu_id
-
-
- 	def javascript(self):
- 	    
-		return """<script type="text/javascript" src="http://www.theajmonline.com.au/iir/book/book1/swfobject.js" />
+    	return u"""<script type="text/javascript" src="http://www.theajmonline.com.au/iir/book/book1/swfobject.js" />
         <script type="text/javascript">
                 var attributes = {
-                    id: 'issuuViewer1'
+                    id: 'issuuViewer'
                 };
     
                 var params = {
@@ -269,12 +253,10 @@ class IssuuFlashView(BrowserView):
                     allowScriptAccess: 'always',
                     menu: 'false'
                 };
-    
+ 
                 var flashvars = {
-                    jsAPIClientDomain: 'issuu.com',
-                    mode: 'embed',
-                    layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
-                    showFlipBtn: 'true',
+                    jsAPIClientDomain: 'medialog.no',
+                    mode: 'mini',
                     documentId: %(issuu_id)s,
                 };
     

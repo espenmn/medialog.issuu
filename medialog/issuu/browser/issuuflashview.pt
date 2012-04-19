@@ -19,7 +19,11 @@
 				issuu_id view/settings/issuu_id;
 				the_id issuu_id">
 
- <div id ="myContent1" >This is replaced with the pdf</div>
+ <div id ="issuuViewer" >
+ <img  tal:define="issuu_id view/issuu_id; 
+        image_url python: 'http://image.issuu.com/' + issuu_id + '/jpg/page_1_thumb_medium.jpg'" 
+        tal:attributes="src image_url">
+</div>
  
  
 </metal:body>

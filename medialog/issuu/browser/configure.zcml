@@ -27,7 +27,7 @@
     />  
 
   <browser:page
- name="issuu_flashview"
+	name="issuu_flashview"
        for="medialog.issuu.interfaces.IIssuu"
        permission="zope2.View"
        template="issuuflashview.pt"
