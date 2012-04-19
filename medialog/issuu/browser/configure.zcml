@@ -17,6 +17,14 @@
   	 layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
 
+  <browser:page 
+    	name="issuu_imageview"
+  	 for="medialog.issuu.interfaces.IIssuu"
+  	 permission="zope2.View"
+  	 template="issuuimageview.pt"
+  	 class=".views.IssuuEmbedView"
+  	 layer="medialog.issuu.interfaces.IIssuuLayer"
+    />  
 
   <browser:page
       for="*"

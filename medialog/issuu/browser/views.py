@@ -285,4 +285,3 @@ class IssuuFlashView(BrowserView):
  		'width': self.settings.width,
  		'height': self.settings.height,
 }
-
