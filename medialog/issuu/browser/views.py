@@ -194,7 +194,6 @@ class IssuuView(BrowserView):
             url = 'http://api.issuu.com/1_0',
             action = 'issuu.document.list',
             data = {
-                'documentId': issuu_id,
             }
         )        
 
