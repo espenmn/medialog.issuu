@@ -189,18 +189,11 @@ class IssuuView(BrowserView):
         issuu_id = self.settings.issuu_id
         
         #find document name on issuu.com would be better, but havent sorted this out yet.
-        #because the original name changes after the pdf has been processed.        
+        #if the name changes after the pdf has been processed.        
         #response = self.list_documents()['_content']['result'] 
-        
-        #Did not work
-        #self.delete_documents([id])
-        self._query(
-            url = 'http://api.issuu.com/1_0',
-            action = 'issuu.document.delete',
-            data = {
-                'names': self.settings.issuu_name,
-            }
-        )
+        self.delete_documents([self.settings.issuu_name])
+        self.request.response.redirect(self.context.absolute_url() + '/@@disable_issuu')
+
 
     def delete_documents(self, ids):
         """

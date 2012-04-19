@@ -14,7 +14,7 @@
             <permission>medialog.issuu: Manage issuu settings</permission>
         </action>
 		
-		<action title="Remove pdf on issuu.com" action_id="remove_issuu" category="object_buttons"
+		<action title="Delete pdf on issuu.com" action_id="delete_on_issuu" category="object_buttons"
             condition_expr="object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@issuu_delete" visible="True">
             <permission>medialog.issuu: Manage issuu settings</permission>
