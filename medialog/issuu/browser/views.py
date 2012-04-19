@@ -85,14 +85,15 @@ class IssuuView(BrowserView):
         """
         Upload the given ``file``.
         """
-        self.issuu_name = self.title + str(random.randint(10000,99999))
+        self.issuu_name = str(self.title) + str(random.randint(10000,99999))
+        issuu_name = self.issuu_name
         response = self._query(
             url = 'http://upload.issuu.com/1_0',
             action = 'issuu.document.upload',
             data = {
                 'file': self.file,
                 'title': self.title,
-                'name' : self.issuu_name,
+                'name' : 'myname',
             }
         )        
 

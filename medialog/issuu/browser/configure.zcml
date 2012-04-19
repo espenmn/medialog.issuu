@@ -27,14 +27,13 @@
     />  
 
   <browser:page
-      for="*"
-      name="issuu_flashview"
-      permission="zope2.View"
-      class=".views.IssuuFlashView"
-      template="issuuflashview.pt"
-      layer="medialog.issuu.interfaces.IIssuuLayer"
-      allowed_interface=".views.IIssuuView"
-    />
+ name="issuu_flashview"
+       for="medialog.issuu.interfaces.IIssuu"
+       permission="zope2.View"
+       template="issuuflashview.pt"
+       class=".views.IssuuEmbedView"
+       layer="medialog.issuu.interfaces.IIssuuLayer"
+    />  
  
   <browser:page 
     	name="issuu_fullscreen_view"
