@@ -1,7 +1,6 @@
 from Acquisition import aq_inner
 
-
-
+import random
 import requests
 from hashlib import md5
 #import json
@@ -86,19 +85,21 @@ class IssuuView(BrowserView):
         """
         Upload the given ``file``.
         """
+        self.issuu_name = self.title + str(random.randint(10000,99999))
         response = self._query(
             url = 'http://upload.issuu.com/1_0',
             action = 'issuu.document.upload',
             data = {
                 'file': self.file,
                 'title': self.title,
+                'name' : self.issuu_name,
             }
         )        
 
-        #save settings we got back from from 'the upload to issuu'
-        #should probably only include documentID
+        #save settings we got back from from 'the upload to issuu' and the name
         issuu_response = response['_content']['document']
         my_issuu_id = issuu_response['documentId']
+        self.settings.issuu_name = self.issuu_name
         self.settings.issuu_id = my_issuu_id
         
     def _query(self, url, action, data=None):
@@ -171,7 +172,7 @@ class IssuuView(BrowserView):
         """
         return self._query(
             url = 'http://api.issuu.com/1_0',
-            action = 'issuu.documents.list'
+            action = 'issuu.documents.list',
         )
 
     def delete_document(self, context=None):
@@ -187,20 +188,9 @@ class IssuuView(BrowserView):
         self.settings = IssuuSettings(context)
         issuu_id = self.settings.issuu_id
         
-        #find document name on issuu.com
-        #because the original name changes after the pdf has been processed.
-        
-        response = self._query(
-            url = 'http://api.issuu.com/1_0',
-            action = 'issuu.document.list',
-            data = {
-                'responseParams': ['documentId', 'name'],
-            }
-        )        
-
-        document_name = response['_content']
-        #['document']['name']
-        print document_name
+        #find document name on issuu.com would be better, but havent sorted this out yet.
+        #because the original name changes after the pdf has been processed.        
+        #response = self.list_documents()['_content']['result'] 
         
         #Did not work
         #self.delete_documents([id])
@@ -208,7 +198,7 @@ class IssuuView(BrowserView):
             url = 'http://api.issuu.com/1_0',
             action = 'issuu.document.delete',
             data = {
-                'names': document_name,
+                'names': self.settings.issuu_name,
             }
         )
 

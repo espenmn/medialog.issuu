@@ -67,7 +67,14 @@ class IIssuuSettings(Interface):
  
     issuu_id = schema.TextLine(
         title=_(u"label_issuu_id",
-            default=u"ID for the document at issuu.com. Dont edit this id unless you know what you are doing"), 
+            default=u"ID for the document at issuu.com. Dont edit this id unless you know what you are doing!!"), 
         default=u"101209160738-bfd67b25284249cfb535c886beb7430b",
+        required=True
+    )
+
+    issuu_name = schema.TextLine(
+        title=_(u"label_issuu_name",
+            default=u"Name for the document at issuu.com. Dont edit this id unless you know what you are doing!!"), 
+        default=u"1234",
         required=True
     )
