@@ -56,6 +56,7 @@ class IssuuView(BrowserView):
         #the issuu settings are stored in portal properties
         issuu_properties = getToolByName(context, 'portal_properties').issuu_properties  
         self.key=issuu_properties.issuu_key
+        self.domain=issuu_properties.domain
         self.secret=issuu_properties.issuu_secret
         self.title = context.title
         self.context=context               
@@ -234,7 +235,7 @@ class IssuuView(BrowserView):
                 };
  
                 var flashvars = {
-                    jsAPIClientDomain: 'products.medialog.no',
+                    jsAPIClientDomain: domain,
                     mode: 'mini',
                     documentId: %(issuu_id)s,
                 };
@@ -246,4 +247,5 @@ class IssuuView(BrowserView):
  		'issuu_id': self.settings.issuu_id,
  		'width': self.settings.width,
  		'height': self.settings.height,
+ 		'domain': self.domain,
 }
