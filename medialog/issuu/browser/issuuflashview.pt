@@ -17,10 +17,10 @@
 
     <div id ="issuuViewer" >
     
-    <div tal:define="pages view/settings/pagecount; issuu_id view/settings/issuu_id" tal:repeat="page python:range(pages)">
+    <span tal:define="pages view/settings/pagecount; issuu_id view/settings/issuu_id" tal:repeat="page python:range(pages)">
         <img tal:define="image_url python: 'http://image.issuu.com/' + issuu_id + '/jpg/page_' + str(page+1) + '_thumb_large.jpg'" 
         tal:attributes="src image_url">
-    </div>
+    </span>
     
 </metal:body>
 
