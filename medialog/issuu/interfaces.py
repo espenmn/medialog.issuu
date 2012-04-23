@@ -81,7 +81,7 @@ class IIssuuSettings(Interface):
 
     pagecount = schema.Int(
         title=_(u"label_pagecount",
-            default=u"Number of pages of document. Dont edit this number unless you know what you are doing!!"), 
+            default=u"Number of pages of document to show when flash is disabled!!"), 
         default=1,
         required=True
     )

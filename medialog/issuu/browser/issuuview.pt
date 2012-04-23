@@ -4,9 +4,9 @@
       i18n:domain="medialog.issuu">
 <body>
 <metal:body fill-slot="content-core" 
-	tal:define="width  view/width; 
-				height view/height; 
-				issuu_id view/issuu_id;
+	tal:define="width  view/settings/width; 
+				height view/settings/height; 
+				issuu_id view/settings/issuu_id;
 				the_id issuu_id">
 				 
   <metal:main_macro define-macro="main">

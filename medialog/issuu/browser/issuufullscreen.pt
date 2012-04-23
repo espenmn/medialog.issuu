@@ -3,8 +3,8 @@
       i18n:domain="medialog.issuu">
 <body>
 <metal:body  tal:define="width  view/settings/width; 
-				height view/height; 
-				issuu_id view/issuu_id;
+				height view/settings/height; 
+				issuu_id view/settings/issuu_id;
 				the_id issuu_id">
 <div><object style="width:100%;height:100%" >
 

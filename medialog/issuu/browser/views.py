@@ -39,6 +39,11 @@ class IIssuuView(Interface):
 
     def settings():
         """ settings method"""
+        
+    def javascript():
+        """
+        content to be included in javascript area of template
+        """
 
 
 class IssuuView(BrowserView):
@@ -57,6 +62,8 @@ class IssuuView(BrowserView):
         self.request = request
         self.settings = IssuuSettings(context)
         
+        self.issuu_id = self.settings.issuu_id
+        
         #thanks to nathan for this line
         #remember 'open' takes a file (ONLY)
         #PS it is probably easier to use upload with URL (issuu.com supportst that)
@@ -70,15 +77,6 @@ class IssuuView(BrowserView):
     @property
     def portal(self):
         return getToolByName(self.context, 'portal_url').getPortalObject()
-        
-        
-    def __call__(self):
-        """
-        Upload current file.
-        """        
-        upload = self.upload_document()
-        #change view now that the file exists on issuu.com
-        self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         
        
     def upload_document(self):
@@ -100,11 +98,13 @@ class IssuuView(BrowserView):
         #save settings we got back from from 'the upload to issuu' and the name
         issuu_response = response['_content']['document']
         my_issuu_id = issuu_response['documentId']
-        pagecount = issuu_response['pageCount']
+        #pagecount = issuu_response['pageCount']
         
         self.settings.issuu_name = self.issuu_name
         self.settings.issuu_id = my_issuu_id
-        self.settings.pagecount = pagecount
+        
+        #change view now that the file exists on issuu.com
+        self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         
     def _query(self, url, action, data=None):
         """
@@ -217,42 +217,11 @@ class IssuuView(BrowserView):
             }
         )
 
-class IIssuuEmbedView(Interface):
-    """
-    issuu embed / flashview interface
-    """
-
-    def javascript():
-        """
-        content to be included in javascript area of template
-        """
-
-
-class IssuuEmbedView(BrowserView):
-    """
-    issuu browser view that shows the embedded file 
-    """
-
-    def __init__(self, context, request):
-    	"""
-    		I Think all this is needed, should probably add some more, like background color, menu etc. 
-    	"""
-    	self.context = context
-        self.request = request
-        self.settings = IssuuSettings(context)
-        self.width = self.settings.width 
-        self.height = self.settings.height 
-        self.issuu_id = self.settings.issuu_id
-
-    def __call__(self):
-        context = self.context
-        self.settings = IssuuSettings(context)
-    
     def javascript(self):
         """
     		We need this javascript for the swf view
     	"""
-    	return u"""<script type="text/javascript" src="http://www.theajmonline.com.au/iir/book/book1/swfobject.js" />
+    	return u"""
         <script type="text/javascript">
                 var attributes = {
                     id: 'issuuViewer'

@@ -6,7 +6,27 @@
   
   
     <metal:js fill-slot="javascript_head_slot">
-    <tal:replace tal:replace="structure view/javascript" />
+     <script type="text/javascript" src="http://www.theajmonline.com.au/iir/book/book1/swfobject.js" />
+<script type="text/javascript">
+                var attributes = {
+                    id: 'issuuViewer'
+                };
+    
+                var params = {
+                    allowfullscreen: 'true',
+                    allowScriptAccess: 'always',
+                    menu: 'false'
+                };
+ 
+                var flashvars = {
+                    jsAPIClientDomain: 'medialog.no',
+                    mode: 'mini',
+                    documentId: '120423111051-eeaa4264dcdd4471947d94ead53cd380',
+                };
+    
+                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "200", "600", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);
+    
+            </script>
   </metal:js>
   
    
@@ -19,13 +39,14 @@
 				issuu_id view/settings/issuu_id;
 				the_id issuu_id">
 
- <div id ="issuuViewer" >
- <img  tal:define="issuu_id view/issuu_id; 
-        image_url python: 'http://image.issuu.com/' + issuu_id + '/jpg/page_1_thumb_medium.jpg'" 
+    <div id ="issuuViewer" >
+    
+    <div tal:define="pages view/settings/pagecount; issuu_id view/settings/issuu_id" tal:repeat="page python:range(pages)">
+        <img tal:define="image_url python: 'http://image.issuu.com/' + issuu_id + '/jpg/page_' + str(page+1) + '_thumb_large.jpg'" 
         tal:attributes="src image_url">
-</div>
+    </div>
 
- 
 </metal:body>
+
 </body>
 </html>

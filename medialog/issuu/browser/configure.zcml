@@ -13,7 +13,7 @@
   	 for="medialog.issuu.interfaces.IIssuu"
   	 permission="zope2.View"
   	 template="issuuview.pt"
-  	 class=".views.IssuuEmbedView"
+  	 class=".views.IssuuView"
   	 layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
 
@@ -22,7 +22,7 @@
   	 for="medialog.issuu.interfaces.IIssuu"
   	 permission="zope2.View"
   	 template="issuuimageview.pt"
-  	 class=".views.IssuuEmbedView"
+  	 class=".views.IssuuView"
   	 layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
 
@@ -31,7 +31,7 @@
        for="medialog.issuu.interfaces.IIssuu"
        permission="zope2.View"
        template="issuuflashview.pt"
-       class=".views.IssuuEmbedView"
+       class=".views.IssuuView"
        layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
  
@@ -40,7 +40,7 @@
   	 for="medialog.issuu.interfaces.IIssuu"
   	 permission="zope2.View"
   	 template="issuufullscreen.pt"
-  	 class=".views.IssuuEmbedView"
+  	 class=".views.IssuuView"
   	 layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
        
@@ -49,6 +49,7 @@
       name="issuu_upload"
       permission="medialog.issuu.ManageIssuuSettings"
       class=".views.IssuuView"
+      attribute="upload_document"
       layer="medialog.issuu.interfaces.IIssuuLayer"
       allowed_interface=".views.IIssuuView"
     />
