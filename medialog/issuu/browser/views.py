@@ -230,7 +230,7 @@ class IIssuuEmbedView(Interface):
 
 class IssuuEmbedView(BrowserView):
     """
-    issuu browser that shows the embedded file 
+    issuu browser view that shows the embedded file 
     """
 
     def __init__(self, context, request):
@@ -244,7 +244,10 @@ class IssuuEmbedView(BrowserView):
         self.height = self.settings.height 
         self.issuu_id = self.settings.issuu_id
 
-
+    def __call__(self):
+        context = self.context
+        self.settings = IssuuSettings(context)
+    
     def javascript(self):
         """
     		We need this javascript for the swf view

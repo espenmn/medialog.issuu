@@ -18,6 +18,10 @@ Changelog
 
 - Added option to remove file on issuu.com
 
+0.2.1 dev (2012.04.23)
+-------------------
+
+- Added more document types
 
 To DO:
 Write tests (Could need some help here)
