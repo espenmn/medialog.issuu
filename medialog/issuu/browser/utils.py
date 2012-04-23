@@ -76,11 +76,11 @@ class IssuuUtil(BrowserView):
         return self.enabled() or self.view_enabled()
         
     
-    def is_pdf(self, context=None):
+    def is_right_type(self, context=None):
         if context is None:
             context = self.context
             
         if self.enabled()==False and hasattr(context, 'getContentType'):
-            return context.getContentType() in ('application/pdf', 'application/x-pdf', 'image/pdf')
+            return context.getContentType() in ('application/pdf', 'application/x-pdf', 'image/pdf', 'application/vnd.oasis.opendocument.text-master', 'application/vnd.oasis.opendocument.text', 'application/vnd.wordperfect', 'application/x-wordperfect', 'application/vnd.sun.xml.writer', 'application/wordperfect', 'application/vnd.sun.xml.impress', 'application/vnd.oasis.opendocument.presentation', 'application/vnd.ms-powerpoint', 'application/powerpoint, application/mspowerpoint', 'application/x-mspowerpoint', 'application/rtf', 'application/msword')
         else:
             return False    

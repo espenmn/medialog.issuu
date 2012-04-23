@@ -15,7 +15,7 @@ class IIssuuLayer(Interface):
 class IIssuu(Interface):
     """
     marker interface for content types that can use
-    issuu view (probably only pdf files)
+    issuu view  
     """
 
 class IIssuuUtilProtected(Interface):
@@ -69,12 +69,21 @@ class IIssuuSettings(Interface):
         title=_(u"label_issuu_id",
             default=u"ID for the document at issuu.com. Dont edit this id unless you know what you are doing!!"), 
         default=u"101209160738-bfd67b25284249cfb535c886beb7430b",
-        required=True
+        required=True,
+        visible=False
     )
 
     issuu_name = schema.TextLine(
         title=_(u"label_issuu_name",
-            default=u"Name for the document at issuu.com. Dont edit this id unless you know what you are doing!!"), 
+            default=u"Name for the document at issuu.com. Dont edit this name unless you know what you are doing!!"), 
         default=u"1234",
+        required=True,
+        visible=False,
+    )
+
+    pagecount = schema.Int(
+        title=_(u"label_pagecount",
+            default=u"Number of pages of document. Dont edit this number unless you know what you are doing!!"), 
+        default=1,
         required=True
     )

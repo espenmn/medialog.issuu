@@ -74,10 +74,10 @@ class IssuuView(BrowserView):
         
     def __call__(self):
         """
-        Upload current (pdf) file.
+        Upload current file.
         """        
         upload = self.upload_document()
-        #change view now that the pdf exists on issuu.com
+        #change view now that the file exists on issuu.com
         self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         
        
@@ -100,8 +100,11 @@ class IssuuView(BrowserView):
         #save settings we got back from from 'the upload to issuu' and the name
         issuu_response = response['_content']['document']
         my_issuu_id = issuu_response['documentId']
+        pagecount = issuu_response['pageCount']
+        
         self.settings.issuu_name = self.issuu_name
         self.settings.issuu_id = my_issuu_id
+        self.settings.pagecount = pagecount
         
     def _query(self, url, action, data=None):
         """
@@ -190,9 +193,13 @@ class IssuuView(BrowserView):
         issuu_id = self.settings.issuu_id
         
         #find document name on issuu.com would be better, but havent sorted this out yet.
-        #if the name changes after the pdf has been processed.        
+        #if the name changes after the file has been processed.        
         #response = self.list_documents()['_content']['result'] 
-        self.delete_documents([self.settings.issuu_name])
+        #for doc in response ['_content']: 
+        #    if doc['document']['documentId'] == issuu_id: 
+        #        self.delete_documents(doc['document']['name'])
+        
+        self.delete_documents([self.settings.issuu_name])       
         self.request.response.redirect(self.context.absolute_url() + '/@@disable_issuu')
 
 
@@ -223,7 +230,7 @@ class IIssuuEmbedView(Interface):
 
 class IssuuEmbedView(BrowserView):
     """
-    issuu browser that shows the embedded 'pdf' 
+    issuu browser that shows the embedded file 
     """
 
     def __init__(self, context, request):

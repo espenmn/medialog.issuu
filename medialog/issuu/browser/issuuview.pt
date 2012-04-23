@@ -26,8 +26,7 @@
         tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height) ; issuu_flashvars python:'mode=mini&amp;autoFlip=true&amp;printButtonEnabled=false&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
         tal:attributes="style issuu_style; flashvars issuu_flashvars" />
     </object> 
-
-  </metal:main_macro>
+ </metal:main_macro>
 
 </metal:body>
 </body>

@@ -116,7 +116,7 @@
     for="Products.ATContentTypes.interface.file.IFileContent"
     menu="plone_displayviews"
     title="Issuu View II"
-    action="pdf_view"
+    action="issuufile_view"
     layer="medialog.issuu.interfaces.IIssuuLayer"
     description="Shows the content the Issuu Way - embedded, too." />
 

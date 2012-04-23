@@ -3,7 +3,7 @@
     <action-provider name="portal_actions">
 
         <action title="Add to issuu.com" action_id="enable_issuu" category="object_buttons"
-            condition_expr="object/@@issuu_util/is_pdf"
+            condition_expr="object/@@issuu_util/is_right_type"
             url_expr="string:${object_url}/@@enable_issuu" visible="True">
             <permission>medialog.issuu: Manage issuu settings</permission>
         </action>
@@ -14,7 +14,7 @@
             <permission>medialog.issuu: Manage issuu settings</permission>
         </action>
 		
-		<action title="Delete pdf on issuu.com" action_id="delete_on_issuu" category="object_buttons"
+		<action title="Delete file on issuu.com" action_id="delete_on_issuu" category="object_buttons"
             condition_expr="object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@issuu_delete" visible="True">
             <permission>medialog.issuu: Manage issuu settings</permission>
