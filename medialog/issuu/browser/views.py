@@ -234,7 +234,7 @@ class IssuuView(BrowserView):
                 };
  
                 var flashvars = {
-                    jsAPIClientDomain: 'medialog.no',
+                    jsAPIClientDomain: 'products.medialog.no',
                     mode: 'mini',
                     documentId: %(issuu_id)s,
                 };
