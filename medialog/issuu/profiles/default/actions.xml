@@ -23,7 +23,7 @@
 		<action title="Issuu Settings" action_id="issuu_settings" category="object"
             condition_expr="object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@issuu-settings" visible="True">
-            <permission>collective.easyslider: Manage slider settings</permission>
+            <permission>medialog.issuu: Manage issuu settings</permission>
         </action>
 
 
