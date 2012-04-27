@@ -240,7 +240,7 @@ class IssuuView(BrowserView):
                     documentId: %(issuu_id)s,
                 };
     
-                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "200", "600", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);
+                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "issuuViewer", "200", "600", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);
     
             </script>
 """  % {
