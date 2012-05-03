@@ -236,7 +236,8 @@ class IssuuView(BrowserView):
  
                 var flashvars = {
                     jsAPIClientDomain: 'issuu.com',
-                    mode: 'mini',
+                    mode: 'embed',
+                    backgroundColor : '#000000',
                     documentId: '%(issuu_id)s',
                     layout: '%(layout)s',
                 };    
@@ -246,6 +247,7 @@ class IssuuView(BrowserView):
  		'issuu_id': self.settings.issuu_id,
  		'width': self.settings.width,
  		'height': self.settings.height,
- 		'layout' : 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml'
+ 		'layout' : 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
+ 		'mode' : 'mini embed'
 }
                     
