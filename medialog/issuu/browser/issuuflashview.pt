@@ -20,6 +20,13 @@
         </div>
   
          <tal:replace tal:replace="structure view/javascript" />
+         layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
+                             menu: 'false'
+                              allowfullscreen: 'true',
+                              showFlipBtn: 'true',
+                              docName: 'gan_issuu',
+                              loadingInfoText: 'Greek%20Architecture',
+                               mode: 'embed',
 	    </div>
 </metal:body>
 
