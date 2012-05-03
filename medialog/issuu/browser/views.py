@@ -235,10 +235,10 @@ class IssuuView(BrowserView):
                 };
  
                 var flashvars = {
-                    jsAPIClientDomain: '%(domain)s',
+                    jsAPIClientDomain: 'issuu.com',
                     mode: 'mini',
-                    layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
                     documentId: '%(issuu_id)s',
+                    layout: '%(layout)s',
                 };    
                 swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "%(width)s", "%(height)s", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);    
             </script>
@@ -246,5 +246,6 @@ class IssuuView(BrowserView):
  		'issuu_id': self.settings.issuu_id,
  		'width': self.settings.width,
  		'height': self.settings.height,
- 		'domain': self.domain,
+ 		'layout' : 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml'
 }
+                    
