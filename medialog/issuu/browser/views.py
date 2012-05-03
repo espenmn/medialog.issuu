@@ -231,13 +231,13 @@ class IssuuView(BrowserView):
                 var params = {
                     allowfullscreen: 'true',
                     allowScriptAccess: 'always',
-                    layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
                     menu: 'false'
                 };
  
                 var flashvars = {
                     jsAPIClientDomain: '%(domain)s',
                     mode: 'mini',
+                    layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
                     documentId: '%(issuu_id)s',
                 };    
                 swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "%(width)s", "%(height)s", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);    
