@@ -2,12 +2,6 @@
       lang="en"
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="medialog.issuu">
-<head>
-  <metal:js fill-slot="javascript_head_slot">
-    <tal:replace tal:replace="structure view/javascript" />
-  </metal:js>
-</head>
-
 <body>
 <metal:body fill-slot="content-core" 
 	tal:define="width  view/settings/width; 
@@ -15,13 +9,25 @@
 				issuu_id view/settings/issuu_id;
 				the_id issuu_id">
 
-    <div id ="issuuViewer" >
-    
-    <span tal:define="pages view/settings/pagecount; issuu_id view/settings/issuu_id" tal:repeat="page python:range(pages)">
-        <img tal:define="image_url python: 'http://image.issuu.com/' + issuu_id + '/jpg/page_' + str(page+1) + '_thumb_large.jpg'" 
-        tal:attributes="src image_url">
-    </span>
-    
+<script type="text/javascript" src="http://issuu.com/services/api/viewer/swfobject/swfobject.js"></script>
+	<div>
+ 		<div id ="myContent1" 
+ 			tal:define="pages view/settings/pagecount; 
+ 						issuu_id view/settings/issuu_id" 
+ 			tal:repeat="page python:range(pages)">
+        		<img tal:define="image_url python: 'http://image.issuu.com/' + issuu_id + '/jpg/page_' + str(page+1) + '_thumb_large.jpg'" 
+        		tal:attributes="src image_url">
+        </div>
+  
+         <tal:replace tal:replace="structure view/javascript" />
+         layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
+                             menu: 'false'
+                              allowfullscreen: 'true',
+                              showFlipBtn: 'true',
+                              docName: 'gan_issuu',
+                              loadingInfoText: 'Greek%20Architecture',
+                               mode: 'embed',
+	    </div>
 </metal:body>
 
 </body>

@@ -230,17 +230,19 @@ class IssuuView(BrowserView):
                 };
  
                 var flashvars = {
-                    jsAPIClientDomain: domain,
-                    mode: 'mini',
-                    documentId: %(issuu_id)s,
-                };
-    
-                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "issuuViewer", "200", "600", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);
-    
+                    jsAPIClientDomain: 'issuu.com',
+                    mode: 'embed',
+                    backgroundColor : '#000000',
+                    documentId: '%(issuu_id)s',
+                    layout: '%(layout)s',
+                };    
+                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "%(width)s", "%(height)s", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);    
             </script>
 """  % {
  		'issuu_id': self.settings.issuu_id,
  		'width': self.settings.width,
  		'height': self.settings.height,
- 		'domain': self.domain,
+ 		'layout' : 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
+ 		'mode' : 'mini embed'
 }
+                    
