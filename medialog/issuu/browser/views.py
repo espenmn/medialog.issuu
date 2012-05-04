@@ -105,7 +105,7 @@ class IssuuView(BrowserView):
         self.settings.issuu_id = my_issuu_id
         
         #change view now that the file exists on issuu.com
-        self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
+        self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuu_flashview')
         
     def _query(self, url, action, data=None):
         """
@@ -224,17 +224,21 @@ class IssuuView(BrowserView):
                 };
     
                 var params = {
-                    allowfullscreen: 'true',
+                    allowfullscreen: '%(allowfullscreen)s',
                     allowScriptAccess: 'always',
-                    menu: 'false'
+                    menu: '%(menu)s',
                 };
  
                 var flashvars = {
-                    jsAPIClientDomain: 'issuu.com',
-                    mode: 'embed',
-                    backgroundColor : '#000000',
+                    jsAPIClientDomain: '%(domain)s',
+                    mode: '%(mode)s',
+                    backgroundColor : '%(backgroundcolor)s',
                     documentId: '%(issuu_id)s',
                     layout: '%(layout)s',
+                    loadingInfoText: '%(loadinginfotext)s',
+                    showFlipBtn: '%(showflipbtn)s',
+                    docName: '%(name)s',
+
                 };    
                 swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "%(width)s", "%(height)s", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);    
             </script>
@@ -242,7 +246,15 @@ class IssuuView(BrowserView):
  		'issuu_id': self.settings.issuu_id,
  		'width': self.settings.width,
  		'height': self.settings.height,
- 		'layout' : 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
- 		'mode' : 'mini embed'
+ 		'domain' : self.settings.domain,
+ 		'backgroundcolor' : self.settings.backgroundcolor,
+ 		'mode' : self.settings.mode,
+ 		'menu' : self.settings.menu,
+ 		'layout' : self.settings.layout,
+ 		'mode' : self.settings.mode,
+ 		'allowfullscreen' : self.settings.allowfullscreen,
+ 		'loadinginfotext': self.settings.loadinginfotext,
+ 		'name' : self.settings.issuu_name,
+ 		'showflipbtn' : self.settings.showflipbtn,
 }
                     

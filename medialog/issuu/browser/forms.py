@@ -10,13 +10,17 @@ from plone.app.form import base as ploneformbase
 from medialog.issuu.interfaces import IIssuuSettings 
 from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
-  
+ 
+from Products.SmartColorWidget.Widget import SmartColorWidget
+
+ 
 
 class IssuuSettingsForm(ploneformbase.EditForm):
     """
     The page that holds all the issuu settings
     """
     form_fields = form.FormFields(IIssuuSettings)
+    form_fields['backgroundcolor'].custom_widget = SmartColorWidget
       
     label = _(u'heading_issuu_settings_form', default=u"Issuu Settings")
     description = _(u'description_issuu_settings_form', default=u"Configure the parameters for this file.")

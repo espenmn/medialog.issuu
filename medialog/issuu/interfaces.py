@@ -4,7 +4,6 @@ from medialog.issuu import issuuMessageFactory  as _
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from OFS.interfaces import IItem
 
-
 class IIssuuLayer(Interface):
     """
     marker interface for issuu layer
@@ -65,6 +64,84 @@ class IIssuuSettings(Interface):
         required=True
     )
  
+    pagecount = schema.Int(
+        title=_(u"label_pagecount",
+            default=u"Number of (images of) pages of document to show in flashview.... when flash is disabled"), 
+        default=1,
+        required=True
+    )
+        
+    mode = schema.Choice (
+        title=_(u"label_mode",
+            default=u"Mode"),
+        default="mini",
+        vocabulary=SimpleVocabulary([
+            SimpleTerm("mini", "mini",
+                _(u"label_mini", default=u"Mini")),
+            SimpleTerm("embed", "embed",
+                _(u"label_embed", default=u"Embed")
+            )
+        ])
+    )
+    
+    menu = schema.Choice (
+        title=_(u"label_menu",
+            default=u"Show menu"),
+        default="false",
+        vocabulary=SimpleVocabulary([
+            SimpleTerm("false", "false",
+                _(u"label_false", default=u"No")),
+            SimpleTerm("true", "true",
+                _(u"label_true", default=u"Yes")
+            )
+        ])
+    )
+    
+    layout = schema.Choice (
+        title=_(u"label_layout",
+            default=u"Layout"),
+        default="",
+        vocabulary=SimpleVocabulary([
+            SimpleTerm("", "",
+                _(u"label_default_layout", default=u"Default")),
+            SimpleTerm("http%3A%2F%2Fskin.issuu.com%2Fv%2Fcolor%2Flayout.xml", "http%3A%2F%2Fskin.issuu.com%2Fv%2Fcolor%2Flayout.xml",
+                _(u"label_layout2", default=u"Layout1")),
+            SimpleTerm("http%3A%2F%2Fskin.issuu.com%2Fv%2Fdark%2Flayout.xml", "http%3A%2F%2Fskin.issuu.com%2Fv%2Fdark%2Flayout.xml",
+                _(u"label_layout2", default=u"Layout2")),
+            SimpleTerm("http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml", "http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml",
+                _(u"label_layout1", default=u"Layout3")
+            )
+        ])
+    )
+    
+    backgroundcolor = schema.TextLine(
+        title=_(u"label_backgroundcolor,",
+            default=u"Background color (does not work with all layouts)"), 
+        default=u"#FFFFFF",
+        required=True
+    )
+
+    
+    loadinginfotext = schema.TextLine(
+        title=_(u"label_loadinginfotext",
+            default=u"Text to show while loading"), 
+        default=u"Loading",
+        required=False,
+    )    
+
+    showflipbtn = schema.Choice (
+        title=_(u"label_showflipbtn",
+            default=u"Show Flipbtnu"),
+        default="true",
+        vocabulary=SimpleVocabulary([
+            SimpleTerm("false", "false",
+                _(u"label_false", default=u"No")),
+            SimpleTerm("true", "true",
+                _(u"label_true", default=u"Yes")
+            )
+        ])
+    )
+    
     issuu_id = schema.TextLine(
         title=_(u"label_issuu_id",
             default=u"ID for the document at issuu.com. Dont edit this id unless you know what you are doing!!"), 
@@ -77,11 +154,4 @@ class IIssuuSettings(Interface):
             default=u"Name for the document at issuu.com. Dont edit this name unless you know what you are doing!!"), 
         default=u"1234",
         required=True,
-    )
-
-    pagecount = schema.Int(
-        title=_(u"label_pagecount",
-            default=u"Number of pages of document to show when flash is disabled!!"), 
-        default=1,
-        required=True
     )
