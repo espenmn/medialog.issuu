@@ -112,21 +112,21 @@ class IIssuuSettings(Interface):
     
     layout = schema.Choice (
         title=_(u"label_layout",
-            default=u"Layout"),
-        default="basicBlue-theme",
+            default=u"Layout (currently not working... could need some help on this"),
+        default="basicBlue",
         vocabulary=SimpleVocabulary([
-            SimpleTerm("basicBlue-theme", "basicBlue-theme",
-                _(u"label_layout1", default=u"basicBlue-theme")),
-            SimpleTerm("basicGrey-theme", "basicGrey-theme",
-                _(u"label_layout2", default=u"basicGrey-theme")),
-            SimpleTerm("crayon-theme", "crayon-theme",
-                _(u"label_layout3", default=u"crayon-theme")),
-            SimpleTerm("whiteMenu-theme", "whiteMenu-theme",
-                _(u"label_layout4", default=u"whiteMenu-theme")),
-            SimpleTerm("wood-theme", "wood-theme",
-                _(u"label_layout5", default=u"wood-theme")),
-            SimpleTerm("white-theme", "http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml",
-                _(u"label_layout6", default=u"white-theme")
+            SimpleTerm("basicBlue", "basicBlue",
+                _(u"label_layout1", default=u"basicBlue")),
+            SimpleTerm("basicGrey", "basicGrey",
+                _(u"label_layout2", default=u"basicGrey")),
+            SimpleTerm("crayon", "crayon",
+                _(u"label_layout3", default=u"crayon")),
+            SimpleTerm("whiteMenu", "whiteMenu",
+                _(u"label_layout4", default=u"whiteMenu")),
+            SimpleTerm("wood", "wood",
+                _(u"label_layout5", default=u"wood")),
+            SimpleTerm("white", "http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml",
+                _(u"label_layout6", default=u"white")
             )
         ])
     )

@@ -237,7 +237,7 @@ class IssuuView(BrowserView):
                     mode: '%(mode)s',
                     backgroundColor : '%(backgroundcolor)s',
                     documentId: '%(issuu_id)s',
-                    layout: '%(portal_url)s/++resource++issuu.resources/%(layout)s/issuu/crossdomain.xml',
+                    layout: '%(portal_url)s/++resource++issuu.resources/%(layout)s-theme/issuu/%(layout)s/layout.xml',
                     loadingInfoText: '%(loadinginfotext)s',
                     showFlipBtn: '%(showflipbtn)s',
                     docName: '%(name)s',
