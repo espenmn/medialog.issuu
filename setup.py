@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This module contains medialog.issuu, a plone product to show pdf files in plone with issuu.com 's viewer.
+This module contains medialog.issuu, a plone product to show files in plone with issuu.com 's viewer.
 """
 import os
 from setuptools import setup, find_packages
@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '0.3'
+version = '0.3.1'
 
 long_description = (
     read('README.txt'))
@@ -27,10 +27,10 @@ setup(name='medialog.issuu',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU General Public License (GPL)',
         ],
-      keywords='',
-      author='',
-      author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      keywords='pdf viewer issuu.com plone',
+      author='Espen Moe-Nilssen',
+      author_email='espen@medialog.no',
+      url='https://github.com/espenmn/medialog.issuu',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['medialog', ],
