@@ -38,7 +38,6 @@ setup(name='medialog.issuu',
       zip_safe=False,
       install_requires=['setuptools',
                         'Products.SmartColorWidget',
-                        'collective.z3cform.colorpicker',
                         'requests >= 0.9, < 1.0'
                         # -*- Extra requirements: -*-
                         ],

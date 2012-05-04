@@ -11,6 +11,7 @@ from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
+from zope.component import getMultiAdapter
 
 from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
@@ -53,6 +54,8 @@ class IssuuView(BrowserView):
     implements(IIssuuSettings)
         
     def __init__(self, context, request):
+        portal_state = getMultiAdapter((context, request), name='plone_portal_state')
+        self.portal_url = portal_state.portal_url()
         #the issuu settings are stored in portal properties
         issuu_properties = getToolByName(context, 'portal_properties').issuu_properties  
         self.key=issuu_properties.issuu_key
@@ -234,7 +237,7 @@ class IssuuView(BrowserView):
                     mode: '%(mode)s',
                     backgroundColor : '%(backgroundcolor)s',
                     documentId: '%(issuu_id)s',
-                    layout: '%(layout)s',
+                    layout: '%(portal_url)s/++resource++issuu.resources/%(layout)s/issuu/crossdomain.xml',
                     loadingInfoText: '%(loadinginfotext)s',
                     showFlipBtn: '%(showflipbtn)s',
                     docName: '%(name)s',
@@ -256,5 +259,6 @@ class IssuuView(BrowserView):
  		'loadinginfotext': self.settings.loadinginfotext,
  		'name' : self.settings.issuu_name,
  		'showflipbtn' : self.settings.showflipbtn,
+ 		'portal_url': self.portal_url,
 }
                     

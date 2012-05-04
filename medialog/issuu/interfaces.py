@@ -97,19 +97,36 @@ class IIssuuSettings(Interface):
         ])
     )
     
+    allowfullscreen = schema.Choice (
+        title=_(u"label_allowfullscreen",
+            default=u"Allow fullscreen"),
+        default="false",
+        vocabulary=SimpleVocabulary([
+            SimpleTerm("false", "false",
+                _(u"label_false", default=u"No ")),
+            SimpleTerm("true", "true",
+                _(u"label_true", default=u"Yes ")
+            )
+        ])
+    )
+    
     layout = schema.Choice (
         title=_(u"label_layout",
             default=u"Layout"),
-        default="",
+        default="basicBlue-theme",
         vocabulary=SimpleVocabulary([
-            SimpleTerm("", "",
-                _(u"label_default_layout", default=u"Default")),
-            SimpleTerm("http%3A%2F%2Fskin.issuu.com%2Fv%2Fcolor%2Flayout.xml", "http%3A%2F%2Fskin.issuu.com%2Fv%2Fcolor%2Flayout.xml",
-                _(u"label_layout2", default=u"Layout1")),
-            SimpleTerm("http%3A%2F%2Fskin.issuu.com%2Fv%2Fdark%2Flayout.xml", "http%3A%2F%2Fskin.issuu.com%2Fv%2Fdark%2Flayout.xml",
-                _(u"label_layout2", default=u"Layout2")),
-            SimpleTerm("http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml", "http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml",
-                _(u"label_layout1", default=u"Layout3")
+            SimpleTerm("basicBlue-theme", "basicBlue-theme",
+                _(u"label_layout1", default=u"basicBlue-theme")),
+            SimpleTerm("basicGrey-theme", "basicGrey-theme",
+                _(u"label_layout2", default=u"basicGrey-theme")),
+            SimpleTerm("crayon-theme", "crayon-theme",
+                _(u"label_layout3", default=u"crayon-theme")),
+            SimpleTerm("whiteMenu-theme", "whiteMenu-theme",
+                _(u"label_layout4", default=u"whiteMenu-theme")),
+            SimpleTerm("wood-theme", "wood-theme",
+                _(u"label_layout5", default=u"wood-theme")),
+            SimpleTerm("white-theme", "http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml",
+                _(u"label_layout6", default=u"white-theme")
             )
         ])
     )

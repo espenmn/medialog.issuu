@@ -120,7 +120,11 @@
     action="issuufile_view"
     layer="medialog.issuu.interfaces.IIssuuLayer"
     description="Shows the content the Issuu Way - embedded, too." />
-
+  
+ <browser:resourceDirectory
+        name="issuu.resources"
+        directory="themes"
+    />
  
 
  
