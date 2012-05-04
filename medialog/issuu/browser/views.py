@@ -166,11 +166,6 @@ class IssuuView(BrowserView):
         mysign = md5(signature).hexdigest()
         return mysign
         
-        
-    class Error(StandardError):
-        pass
-        
-
     def list_documents(self):
         """
         List documents for this user.
