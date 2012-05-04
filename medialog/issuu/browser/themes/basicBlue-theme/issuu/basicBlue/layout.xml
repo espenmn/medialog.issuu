@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<viewer xmlns="http://www.issuu.com/viewer/1.0"
+  backgroundImage="#Background" backgroundSize="stretch">
+
+  <skin source="skins.swf"/>
+
+  <button action="pagePrevious" horizontalCenter="-40" top="10"
+    upState="#PreviousButton_up" overState="#PreviousButton_over" downState="#PreviousButton_down"
+    disabledState="#PreviousButton_disabled" />
+  <button action="index" horizontalCenter="0" top="10"
+    upState="#IndexButton_up" overState="#IndexButton_over" downState="#IndexButton_down" />
+  <button action="pageNext" horizontalCenter="40" top="10"
+    upState="#NextButton_up" overState="#NextButton_over" downState="#NextButton_down"
+    disabledState="#NextButton_disabled" />
+
+  <dropp left="0" top="50" right="0" bottom="10"/>
+
+</viewer>

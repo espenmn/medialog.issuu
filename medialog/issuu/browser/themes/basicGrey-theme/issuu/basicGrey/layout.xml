@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<viewer xmlns="http://www.issuu.com/viewer/1.0"
+  backgroundImage="#Background" backgroundSize="stretch">
+
+  <skin source="skins.swf"/>
+
+  <button action="fullScreen" horizontalCenter="-100" top="10"
+    upState="#FullscreenButton_up" overState="#FullscreenButton_over"
+    downState="#FullscreenButton_down"
+    />
+
+  <box direction="horizontal" horizontalCenter="0" top="10">
+
+    <button action="pagePrevious"
+      upState="#PreviousButton_up" overState="#PreviousButton_over"
+      downState="#PreviousButton_down" disabledState="#PreviousButton_disabled" />
+
+    <button action="index"
+      upState="#IndexButton_up" overState="#IndexButton_over"
+      downState="#IndexButton_down" />
+
+    <button action="pageNext"
+      upState="#NextButton_up" overState="#NextButton_over"
+      downState="#NextButton_down" disabledState="#NextButton_disabled" />
+  </box>
+
+  <pageNumber right="#droppContentRight" top="20" />
+
+  <dropp left="0" top="50" right="0" bottom="80"/>
+
+  <dock left="0" bottom="10" right="0" />
+
+</viewer>

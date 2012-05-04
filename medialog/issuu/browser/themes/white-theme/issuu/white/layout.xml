@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<viewer xmlns="http://www.issuu.com/viewer/1.0" backgroundColor="#ffffff" backgroundImage="#Background" backgroundSize="stretch">
+
+  <skin source="skins.swf"/>
+
+  <image source="#Menubar" />
+
+	<box direction="horizontal" horizontalAlign="center" left="0" right="55" top="7">
+
+	    <pageNumber fontSize="12" color="#333333" fontFamily="Arial, Verdana"/>
+		
+	</box>
+
+  <box direction="horizontal" horizontalAlign="center" left="0" right="0" top="3">
+
+    <button action="pagePrevious" upState="#PreviousButton_up" overState="#PreviousButton_over" downState="#PreviousButton_down" disabledState="#PreviousButton_disabled"/>
+
+    <image source="#Seperator"/>
+	
+	<button action="index" upState="#IndexButton_up" overState="#IndexButton_over" downState="#IndexButton_down"/>		
+
+    <image source="#Seperator"/>
+	
+    <button action="pageNext" upState="#NextButton_up" overState="#NextButton_over" downState="#NextButton_down" disabledState=    "#NextButton_disabled"/>
+
+    <image source="#Seperator"/>
+		    
+    <spacer width="64" />
+	
+    <image source="#Seperator"/>
+	
+    <button action="fullScreen" upState="#FullscreenButton_up" overState="#FullscreenButton_over" downState="#FullscreenButton_down" disabledState="#FullscreenButton_disabled"/>
+
+    <image source="#Seperator"/>
+
+    <button action="share" upState="#ShareButton_up" overState="#ShareButton_over" downState="#ShareButton_down"/>
+
+    <image source="#Seperator"/>				
+
+    <button action="print" upState="#PrintButton_up" overState="#PrintButton_over" downState="#PrintButton_down"/>
+
+    <image source="#Seperator"/>
+
+    <button action="viewMode" upState="#ViewModeButton_up" overState="#ViewModeButton_over" downState="#ViewModeButton_down"/>
+
+  </box>
+
+  <dropp left="0" top="35" right="0" bottom="78"/>
+
+  <dock left="0" right="0" bottom="10" height="80"/>
+
+</viewer>
