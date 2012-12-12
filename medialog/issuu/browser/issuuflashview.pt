@@ -21,6 +21,19 @@
   
          <tal:replace tal:replace="structure view/javascript" />
     </div>
+    <div tal:define="content_type context/get_content_type|context/Format">
+            <p>
+                <metal:field use-macro="python:context.widget('file', mode='view')">
+                File
+                </metal:field>
+            </p>
+            <div tal:condition="python: content_type.startswith('text')">
+                <h2 i18n:translate="heading_file_contents">File contents</h2>
+                <pre tal:content="context/get_data|context/data|nothing">
+                </pre>
+            </div>
+       
+    </div>
 </metal:body>
 
 </body>
