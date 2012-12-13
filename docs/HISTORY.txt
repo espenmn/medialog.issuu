@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.3.2 (2012.12.12)
+-------------------
+
+- Added download link on flashview and issuuview
+
+
 0.3 dev (2012.05.05)
 -------------------
 
@@ -30,6 +36,33 @@ Changelog
 
 - Initial release
 
+
+0.1dev (unreleased)
+-------------------
+
+- Initial release
+
+
+0.1.1 dev (2012.04.17)
+-------------------
+
+- Added fullscreenview
+- Fixed bug so the width works in Safari
+
+0.2 dev (2012.04.19)
+-------------------
+
+- Added option to remove file on issuu.com
+
+0.2.1 dev (2012.04.23)
+-------------------
+
+- Added more document types
+
+0.2.2 dev (2012.04.27)
+-------------------
+
+- Small changes to the flashview
 
 To DO:
 Write tests (Could need some help here)
