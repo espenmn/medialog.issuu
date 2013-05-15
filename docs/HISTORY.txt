@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.3.3 (2013)
+-------------------
+
+- Removed dependency on SmartColorWidget (it does not work in Plone 4.3)
+
+
 0.3.2 (2012.12.12)
 -------------------
 

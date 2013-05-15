@@ -37,9 +37,6 @@ class IIssuuView(Interface):
     """
     issuu view interface
     """
-
-    def settings():
-        """ settings method"""
         
     def javascript():
         """
@@ -103,6 +100,7 @@ class IssuuView(BrowserView):
         issuu_response = response['_content']['document']
         my_issuu_id = issuu_response['documentId']
         #pagecount = issuu_response['pageCount']
+        #my_issuu_id = issuu_response['ep']
         
         self.settings.issuu_name = self.issuu_name
         self.settings.issuu_id = my_issuu_id

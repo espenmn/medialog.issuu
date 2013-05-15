@@ -37,7 +37,6 @@ setup(name='medialog.issuu',
       include_package_data=True,
       zip_safe=False,
       install_requires=['setuptools',
-                        'Products.SmartColorWidget',
                         'requests >= 0.9, < 1.0'
                         # -*- Extra requirements: -*-
                         ],

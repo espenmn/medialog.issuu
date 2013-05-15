@@ -11,7 +11,7 @@ from medialog.issuu.interfaces import IIssuuSettings
 from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
  
-from Products.SmartColorWidget.Widget import SmartColorWidget
+#from Products.SmartColorWidget.Widget import SmartColorWidget
 
  
 
