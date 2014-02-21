@@ -1,10 +1,15 @@
 Changelog
 =========
 
+
+
 0.3.3 (2013)
 -------------------
 
 - Removed dependency on SmartColorWidget (it does not work in Plone 4.3)
+- Changed default view to "issuuview"
+- Added option for "embed_id". This is not supported by the issue API, so you need to copy the id manually (go to the document at issuu.com and click "embed" 
+
 
 
 0.3.2 (2012.12.12)
@@ -64,6 +69,7 @@ Changelog
 -------------------
 
 - Added more document types
+
 
 0.2.2 dev (2012.04.27)
 -------------------

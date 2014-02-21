@@ -106,7 +106,7 @@ class IssuuView(BrowserView):
         self.settings.issuu_id = my_issuu_id
         
         #change view now that the file exists on issuu.com
-        self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuu_flashview')
+        self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         
     def _query(self, url, action, data=None):
         """
@@ -213,7 +213,13 @@ class IssuuView(BrowserView):
                 'names': ','.join(ids)
             }
         )
-
+        
+    def error(self):
+        """
+        Give feedback if issuu.com error.
+        """
+        return """Something happened"""
+        
     def javascript(self):
         """
     		We need this javascript for the swf view

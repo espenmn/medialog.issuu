@@ -172,3 +172,10 @@ class IIssuuSettings(Interface):
         default=u"1234",
         required=True,
     )
+
+    embed_id = schema.TextLine(
+        title=_(u"label_issuu_id",
+            default=u"Embed id. You need to get this by copying it from issuu.com"), 
+        default=u"",
+        required=False,
+    )

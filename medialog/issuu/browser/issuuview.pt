@@ -7,10 +7,13 @@
 	tal:define="width  view/settings/width; 
 				height view/settings/height; 
 				issuu_id view/settings/issuu_id;
-				the_id issuu_id">
+				the_id issuu_id;
+				embed_id  view/settings/embed_id">
 				 
   <metal:main_macro define-macro="main">
-    <object  id="" tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height)" tal:attributes="style issuu_style; id the_id" >
+    <object  id="" tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height)" 
+                   tal:attributes="style issuu_style; id the_id"
+                   tal:condition="not:embed_id" >
         <param name="movie" value="" 
         	tal:define="issuu_value python:'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;autoFlip=true&amp;printButtonEnabled=true&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
         	tal:attributes="value issuu_value" />
@@ -26,6 +29,13 @@
         tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height) ; issuu_flashvars python:'mode=mini&amp;autoFlip=true&amp;printButtonEnabled=false&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
         tal:attributes="style issuu_style; flashvars issuu_flashvars" />
     </object> 
+    
+     <div class="issuuembed" tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height)" 
+                   tal:attributes="style issuu_style; data-configid embed_id"
+                   tal:condition="embed_id" >
+     </div>
+     <script type="text/javascript" src="http://e.issuu.com/embed.js" async="true"  
+             tal:condition="embed_id" ></script>
     
     <div tal:define="content_type context/get_content_type|context/Format">
             <p>
