@@ -206,6 +206,8 @@ class IssuuView(BrowserView):
 
         :param ids: A list of strings describing document IDs.
         """
+        issuu_id = self.settings.issuu_id
+                
         self._query(
             url = 'http://api.issuu.com/1_0',
             action = 'issuu.document.delete',
@@ -214,12 +216,41 @@ class IssuuView(BrowserView):
             }
         )
         
-    def error(self):
+    
+    def embed_add(self):
         """
-        Give feedback if issuu.com error.
+        Create embed (for html5) ``ids``.
+
+        :param ids: ID and size
         """
-        return """Something happened"""
+        issuu_id = self.settings.issuu_id
+        response = self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.document_embed.add',
+            data = {
+                'documentId' :  issuu_id,
+                'height' : 600,
+                'width': 600,
+                'readerStartPage' : 1,
+                
+            }
+        )        
+
+        #save settings we got back 
+        issuu_response = response['_content']['document']
+        my_issuu_embedid = issuu_response['dataConfigId']
         
+ 
+        
+    
+    class Error(StandardError):
+        """
+        To do: Give feedback if issuu.com error.
+        """
+        pass
+        
+        
+    
     def javascript(self):
         """
     		We need this javascript for the swf view

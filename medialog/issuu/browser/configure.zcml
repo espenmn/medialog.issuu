@@ -64,6 +64,15 @@
       allowed_interface=".views.IIssuuView"
     />
  
+ 	<browser:page
+      for="*"
+      name="issuu_embed_add"
+      permission="medialog.issuu.ManageIssuuSettings"
+      class=".views.IssuuView"
+      attribute="embed_add"
+      layer="medialog.issuu.interfaces.IIssuuLayer"
+      allowed_interface=".views.IIssuuView"
+    />
 
   <browser:page 
     name="enable_issuu"
