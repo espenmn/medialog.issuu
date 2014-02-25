@@ -224,6 +224,7 @@ class IssuuView(BrowserView):
         :param ids: ID and size
         """
         issuu_id = self.settings.issuu_id
+        issuu_name  self.settings.issuu_name
         response = self._query(
             url = 'http://api.issuu.com/1_0',
             action = 'issuu.document_embed.add',
