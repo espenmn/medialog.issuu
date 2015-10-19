@@ -7,18 +7,29 @@
     
   <five:registerPackage package="." initialize=".initialize" />
 
- 
+  <!-- Include the sub-packages that use their own configure.zcml files. -->
+
+
+  <!-- Zope 2.9 / 3.2 support -->
+  <configure zcml:condition="installed zope.app.annotation.tests">
+    <include package="zope.app.annotation" />
+  </configure>
+
+  <!-- Zope 2.10 / 3.3 support -->
+  <configure zcml:condition="installed zope.annotation">
+    <include package="zope.annotation" />
+  </configure>
 
   <!-- permission for managing issuu settings -->
-  <!--permission
+  <permission
     id="medialog.issuu.ManageIssuuSettings"
     title="medialog.issuu: Manage issuu settings"
-    /-->
+    />
 
   <!-- adds interface to content type ATFile so it can use the issuu stuff -->
-  <!-- class class="Products.ATContentTypes.content.file.ATFile">
+  <class class="Products.ATContentTypes.content.file.ATFile">
     <implements interface="medialog.issuu.interfaces.IIssuu" />
-  </class-->
+  </class>
     
 
  

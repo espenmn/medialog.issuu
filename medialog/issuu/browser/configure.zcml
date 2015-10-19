@@ -7,7 +7,10 @@
   <include package="plone.app.contentmenu" />
 
   <!-- -*- extra stuff goes here. PS Permissions are wrong (look at the indented lines) -*- -->
-
+  <permission
+    id="medialog.issuu.issuupermissions"
+    title="medialogIssuu: ManageIssuuSettings" />
+    
   <browser:page 
     	name="issuuview"
   	 for="medialog.issuu.interfaces.IIssuu"
@@ -47,7 +50,7 @@
   <browser:page
       for="*"
       name="issuu_upload"
-      permission="medialog.issuu.ManageIssuuSettings"
+      permission="medialog.issuu.issuupermissions"
       class=".views.IssuuView"
       attribute="upload_document"
       layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -57,7 +60,7 @@
   <browser:page
       for="*"
       name="issuu_delete"
-      permission="medialog.issuu.ManageIssuuSettings"
+      permission="medialog.issuu.issuupermissions"
       class=".views.IssuuView"
       attribute="delete_document"
       layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -67,7 +70,7 @@
  	<browser:page
       for="*"
       name="issuu_embed_add"
-      permission="medialog.issuu.ManageIssuuSettings"
+      permission="medialog.issuu.issuupermissions"
       class=".views.IssuuView"
       attribute="embed_add"
       layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -77,7 +80,7 @@
   <browser:page 
     name="enable_issuu"
     for="*"
-    permission="medialog.issuu.ManageIssuuSettings"
+    permission="medialog.issuu.issuupermissions"
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="enable"
     layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -86,7 +89,7 @@
   <browser:page 
     name="disable_issuu"
     for="*"
-    permission="medialog.issuu.ManageIssuuSettings"
+    permission="medialog.issuu.issuupermissions"
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="disable"
     layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -95,7 +98,7 @@
    <browser:page 
      name="issuu_util"
      for="*"
-     permission="medialog.issuu.ManageIssuuSettings"
+     permission="medialog.issuu.issuupermissions"
      allowed_interface="medialog.issuu.interfaces.IIssuuUtil"
      layer="medialog.issuu.interfaces.IIssuuLayer"
      class=".utils.IssuuUtil" />
@@ -106,7 +109,7 @@
     for="medialog.issuu.interfaces.IIssuu"
     class=".forms.IssuuSettingsForm"
     layer="medialog.issuu.interfaces.IIssuuLayer"
-    permission="medialog.issuu.ManageIssuuSettings"/>
+    permission="medialog.issuu.issuupermissions"/>
      
   <adapter 
     for="medialog.issuu.interfaces.IIssuu"
@@ -114,21 +117,21 @@
     factory="medialog.issuu.settings.IssuuSettings" />
     
        
-  <browser:menuItem
+  <!--browser:menuItem
     for="Products.ATContentTypes.interface.file.IFileContent"
     menu="plone_displayviews"
     title="Issuu View"
     action="issuuview"
     layer="medialog.issuu.interfaces.IIssuuLayer"
-    description="Shows the content the Issuu Way- embedded." />
+    description="Shows the content the Issuu Way- embedded." /-->
 
-  <browser:menuItem
+  <!--browser:menuItem
     for="Products.ATContentTypes.interface.file.IFileContent"
     menu="plone_displayviews"
     title="Issuu View II"
     action="issuufile_view"
     layer="medialog.issuu.interfaces.IIssuuLayer"
-    description="Shows the content the Issuu Way - embedded, too." />
+    description="Shows the content the Issuu Way - embedded, too." /-->
   
  <browser:resourceDirectory
         name="issuu.resources"

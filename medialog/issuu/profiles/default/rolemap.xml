@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <rolemap>
   <permissions>
-    <permission name="medialog.issuu: Manage issuu settings"
+    <permission name="medialogIssuu: ManageIssuuSettings"
                 acquire="True">
       <role name="Manager"/>
     </permission>
