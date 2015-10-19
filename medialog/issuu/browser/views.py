@@ -71,7 +71,7 @@ class IssuuView(BrowserView):
         #remember 'open' takes a file (ONLY)
         #PS it is probably easier to use upload with URL (issuu.com supportst that)
         #but this would not work on closed networks / intranet.
-        self.file = StringIO(str(context.getFile().data))
+        #self.file = StringIO(str(context.getFile().data))
         
     @property
     def portal_catalog(self):
@@ -88,13 +88,19 @@ class IssuuView(BrowserView):
         """
         self.issuu_name = str(random.randint(1000000000000,9000000000000))
         
+        import pdb; pdb.set_trace()
+        
+        self.title = self.context.title
+        self.name = self.context.name
+        self.file = self.context.file.data
+        
         response = self._query(
             url = 'http://upload.issuu.com/1_0',
             action = 'issuu.document.upload',
             data = {
-                'file': self.file,
+                'file' : self.file,
                 'title': self.title,
-                'name' : self.issuu_name,
+                'name' : self.name,
             }
         )        
 

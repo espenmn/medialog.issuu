@@ -5,25 +5,25 @@
         <action title="Add to issuu.com" action_id="enable_issuu" category="object_buttons"
             condition_expr="object/@@issuu_util/is_right_type"
             url_expr="string:${object_url}/@@enable_issuu" visible="True">
-            <permission>medialog.issuu: Manage issuu settings</permission>
+            <permission>medialogIssuu: ManageIssuuSettings</permission>
         </action>
 
         <action title="Remove issuu settings." action_id="disable_issuu" category="object_buttons"
             condition_expr="object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@disable_issuu" visible="True">
-            <permission>medialog.issuu: Manage issuu settings</permission>
+            <permission>mmedialogIssuu: ManageIssuuSettings</permission>
         </action>
 		
 		<action title="Delete file on issuu.com" action_id="delete_on_issuu" category="object_buttons"
             condition_expr="object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@issuu_delete" visible="True">
-            <permission>medialog.issuu: Manage issuu settings</permission>
+            <permission>medialogIssuu: ManageIssuuSettingss</permission>
         </action>
 		
 		<action title="Issuu Settings" action_id="issuu_settings" category="object"
             condition_expr="object/@@issuu_util/enabled"
             url_expr="string:${object_url}/@@issuu-settings" visible="True">
-            <permission>medialog.issuu: Manage issuu settings</permission>
+            <permission>medialogIssuu: ManageIssuuSettings</permission>
         </action>
 
 

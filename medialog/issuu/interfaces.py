@@ -1,5 +1,4 @@
-from zope.interface import Interface
-#, Attribute
+from zope.interface import Interface, Attribute
 from zope import schema
 from medialog.issuu import issuuMessageFactory  as _
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm

@@ -16,9 +16,9 @@
     /-->
 
   <!-- adds interface to content type ATFile so it can use the issuu stuff -->
-  <!-- class class="Products.ATContentTypes.content.file.ATFile">
+  <class class="plone.app.contenttypes.interfaces.IFile">
     <implements interface="medialog.issuu.interfaces.IIssuu" />
-  </class-->
+  </class>
     
 
  
