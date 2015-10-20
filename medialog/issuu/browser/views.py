@@ -77,7 +77,7 @@ class IssuuView(BrowserView):
     def portal_catalog(self):
         return getToolByName(self.context, 'portal_catalog')
 
-    @property    import pdb; pdb.set_trace()
+    @property
     def portal(self):
         return getToolByName(self.context, 'portal_url').getPortalObject()
         
