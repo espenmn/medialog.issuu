@@ -1,58 +1,70 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
-      metal:use-macro="here/main_template/macros/master"
-      i18n:domain="medialog.issuu">
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="medialog.issuu">
 <body>
-<metal:body fill-slot="content-core" 
-	tal:define="width  view/settings/width; 
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core"
+    tal:define="content_type context/file/contentType|nothing;
+                download_url string:${context/absolute_url}/@@download/file/${context/file/filename};
+                width  view/settings/width; 
 				height view/settings/height; 
 				issuu_id view/settings/issuu_id;
 				the_id issuu_id;
 				embed_id  view/settings/embed_id">
-				 
-  <metal:main_macro define-macro="main">
-    <object  id="" tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height)" 
-                   tal:attributes="style issuu_style; id the_id"
-                   tal:condition="not:embed_id" >
-        <param name="movie" value="" 
-        	tal:define="issuu_value python:'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;autoFlip=true&amp;printButtonEnabled=true&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
-        	tal:attributes="value issuu_value" />
-        <param name="allowfullscreen" value="true"/>
-        <param name="menu" value="false"/>
-        <param name="wmode" value="transparent"/>
-        <embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" 
-        allowfullscreen="true" 
-        menu="false" 
-        wmode="transparent" 
-        style="" 
-        flashvars=""		
-        tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height) ; issuu_flashvars python:'mode=mini&amp;autoFlip=true&amp;printButtonEnabled=false&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
-        tal:attributes="style issuu_style; flashvars issuu_flashvars" />
+				
+   <object  id="" tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height)" 
+               tal:attributes="style issuu_style; id the_id"
+               tal:condition="not:embed_id" >
+    <param name="movie" value="" 
+        tal:define="issuu_value python:'http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;autoFlip=true&amp;printButtonEnabled=true&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
+        tal:attributes="value issuu_value" />
+    <param name="allowfullscreen" value="true"/>
+    <param name="menu" value="false"/>
+    <param name="wmode" value="transparent"/>
+    <embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" 
+    allowfullscreen="true" 
+    menu="false" 
+    wmode="transparent" 
+    style="" 
+    flashvars=""		
+    tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height) ; issuu_flashvars python:'mode=mini&amp;autoFlip=true&amp;printButtonEnabled=false&amp;backgroundColor=%23222222&amp;documentId=' + the_id"
+    tal:attributes="style issuu_style; flashvars issuu_flashvars" />
     </object> 
-    
-     <div class="issuuembed" tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height)" 
-                   tal:attributes="style issuu_style; data-configid embed_id"
-                   tal:condition="embed_id" >
-     </div>
-     <script type="text/javascript" src="http://e.issuu.com/embed.js" async="true"  
-             tal:condition="embed_id" ></script>
-    
-    <div tal:define="content_type context/get_content_type|context/Format">
-            <p>
-                <metal:field use-macro="python:context.widget('file', mode='view')">
-                File
-                </metal:field>
-            </p>
-            <div tal:condition="python: content_type.startswith('text')">
-                <h2 i18n:translate="heading_file_contents">File contents</h2>
-                <pre tal:content="context/get_data|context/data|nothing">
-                </pre>
-            </div>
-       
-    </div>
-        
- </metal:main_macro>
 
-</metal:body>
+    <div class="issuuembed" tal:define="issuu_style python:u'width:' + str(width)  + ';;' + 'height:' + str(height)" 
+               tal:attributes="style issuu_style; data-configid embed_id"
+               tal:condition="embed_id" >
+    </div>
+    <script type="text/javascript" src="http://e.issuu.com/embed.js" async="true"  
+         tal:condition="embed_id" ></script>	
+			
+  <p>
+    <a tal:attributes="href download_url">
+      <img src="pdf.png" border="0" />
+      <tal:name tal:content="context/file/filename" >Filename</tal:name>
+    </a>
+    <span class="discreet"
+        tal:define="size context/file/getSize;
+                    kb python:size/1024">
+      &mdash; <span tal:replace="kb" /> KB</span>
+  </p>
+
+  
+  <div tal:condition="python: content_type.startswith('text')">
+    <h2 i18n:translate="heading_file_contents">File contents</h2>
+    <pre tal:content="context/file/data|nothing" />
+  </div>
+
+</metal:block>
+</metal:content-core>
+
 </body>
 </html>
+
+
+  
