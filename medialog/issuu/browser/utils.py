@@ -10,14 +10,12 @@ from zope.component import getMultiAdapter
 
 #from medialog.issuu.settings import IssuuSettings
 
-
 try:
     #For Zope 2.10.4
     from zope.annotation.interfaces import IAnnotations
 except ImportError:
     #For Zope 2.9
     from zope.app.annotation.interfaces import IAnnotations
-
 
 class IssuuUtilProtected(BrowserView):
     """
@@ -32,8 +30,7 @@ class IssuuUtilProtected(BrowserView):
             alsoProvides(self.context, IIssuu)
             self.context.reindexObject(idxs=['object_provides'])
             utils.addPortalMessage("You have uploaded this file to issuu.com. You will have to wait a little before before the doucment is found (issuu.com has to process it).")
-            self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')
-            
+            self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')    
         else:  
             self.request.response.redirect(self.context.absolute_url())
         
