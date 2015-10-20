@@ -49,6 +49,8 @@ class IssuuView(BrowserView):
     issuu browser view that takes care of communication with issuu.com
     """
     implements(IIssuuSettings)
+    
+
         
     def __init__(self, context, request):
         portal_state = getMultiAdapter((context, request), name='plone_portal_state')
@@ -75,7 +77,7 @@ class IssuuView(BrowserView):
     def portal_catalog(self):
         return getToolByName(self.context, 'portal_catalog')
 
-    @property
+    @property    import pdb; pdb.set_trace()
     def portal(self):
         return getToolByName(self.context, 'portal_url').getPortalObject()
         
