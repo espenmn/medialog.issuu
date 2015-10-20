@@ -80,8 +80,6 @@ class IssuuUtil(BrowserView):
         if context is None:
             context = self.context
             
-        import pdb; pdb.set_trace()
-            
         if self.enabled()==False : # and hasattr(context.file, contentType):
             return context.file.contentType in ('application/pdf', 'application/x-pdf', 'image/pdf', 'application/vnd.oasis.opendocument.text-master', 'application/vnd.oasis.opendocument.text', 'application/vnd.wordperfect', 'application/x-wordperfect', 'application/vnd.sun.xml.writer', 'application/wordperfect', 'application/vnd.sun.xml.impress', 'application/vnd.oasis.opendocument.presentation', 'application/vnd.ms-powerpoint', 'application/powerpoint, application/mspowerpoint', 'application/x-mspowerpoint', 'application/rtf', 'application/msword')
         else:
