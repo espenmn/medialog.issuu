@@ -50,7 +50,7 @@
   <browser:page
       for="*"
       name="issuu_upload"
-      permission="medialog.issuu.issuupermissions"
+  	 permission="zope2.View"
       class=".views.IssuuView"
       attribute="upload_document"
       layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -60,7 +60,7 @@
   <browser:page
       for="*"
       name="issuu_delete"
-      permission="medialog.issuu.issuupermissions"
+       	 permission="zope2.View"
       class=".views.IssuuView"
       attribute="delete_document"
       layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -70,7 +70,7 @@
  	<browser:page
       for="*"
       name="issuu_embed_add"
-      permission="medialog.issuu.issuupermissions"
+  	 permission="zope2.View"
       class=".views.IssuuView"
       attribute="embed_add"
       layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -80,7 +80,7 @@
   <browser:page 
     name="enable_issuu"
     for="*"
-    permission="medialog.issuu.issuupermissions"
+  	 permission="zope2.View"
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="enable"
     layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -89,7 +89,7 @@
   <browser:page 
     name="disable_issuu"
     for="*"
-    permission="medialog.issuu.issuupermissions"
+  	 permission="zope2.View"
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="disable"
     layer="medialog.issuu.interfaces.IIssuuLayer"
@@ -98,7 +98,7 @@
    <browser:page 
      name="issuu_util"
      for="*"
-     permission="medialog.issuu.issuupermissions"
+  	 permission="zope2.View"
      allowed_interface="medialog.issuu.interfaces.IIssuuUtil"
      layer="medialog.issuu.interfaces.IIssuuLayer"
      class=".utils.IssuuUtil" />

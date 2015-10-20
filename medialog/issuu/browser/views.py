@@ -10,6 +10,11 @@ from zope.interface import implements, Interface
 
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+
+#from plone.api import portal
+
+
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
 
@@ -53,13 +58,17 @@ class IssuuView(BrowserView):
 
         
     def __init__(self, context, request):
+        """halllo"""
         portal_state = getMultiAdapter((context, request), name='plone_portal_state')
         self.portal_url = portal_state.portal_url()
+        
         #the issuu settings are stored in portal properties
         issuu_properties = getToolByName(context, 'portal_properties').issuu_properties  
+        
         self.key=issuu_properties.issuu_key
         self.domain=issuu_properties.domain
         self.secret=issuu_properties.issuu_secret
+        
         self.title = context.title
         self.context=context               
         self.request = request
@@ -72,9 +81,11 @@ class IssuuView(BrowserView):
         #PS it is probably easier to use upload with URL (issuu.com supportst that)
         #but this would not work on closed networks / intranet.
         #self.file = StringIO(str(context.getFile().data))
+        self.file =  context.file.data
         
     @property
     def portal_catalog(self):
+        #api.portal.get_tool(['portal_catalog'])
         return getToolByName(self.context, 'portal_catalog')
 
     @property
@@ -88,19 +99,22 @@ class IssuuView(BrowserView):
         """
         self.issuu_name = str(random.randint(1000000000000,9000000000000))
         
-        import pdb; pdb.set_trace()
+
         
-        self.title = self.context.title
-        self.name = self.context.name
-        self.file = self.context.file.data
+        title = self.context.title
+        title = 'tittel'
+        #need to fix unicode error in line above
+        #name = self.context.name
+        name = self.issuu_name 
+        file = self.context.file.data
         
         response = self._query(
             url = 'http://upload.issuu.com/1_0',
             action = 'issuu.document.upload',
             data = {
-                'file' : self.file,
-                'title': self.title,
-                'name' : self.name,
+                'file' : file,
+                'title': title,
+                'name' : name,
             }
         )        
 
@@ -120,6 +134,9 @@ class IssuuView(BrowserView):
         """
         Low-level access to the Issuu API.
         """
+        
+        import pdb; pdb.set_trace()
+                
         if not data:
             data = {}
 
