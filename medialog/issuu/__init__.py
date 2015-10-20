@@ -2,7 +2,7 @@
 """
 
 from zope.i18nmessageid import MessageFactory
-from medialog.issuu import config
+#from medialog.issuu import config
 
 from Products.Archetypes import atapi
 from Products.CMFCore import utils
