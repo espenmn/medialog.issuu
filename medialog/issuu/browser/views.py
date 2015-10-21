@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from Acquisition import aq_inner
 
 import random
@@ -69,7 +71,8 @@ class IssuuView(BrowserView):
         self.domain=issuu_properties.domain
         self.secret=issuu_properties.issuu_secret
         
-        self.title = context.title
+        self.title = context.title.encode("utf-8")
+        
         self.context=context               
         self.request = request
         self.settings = IssuuSettings(context)
@@ -101,10 +104,6 @@ class IssuuView(BrowserView):
         
 
         
-        title = self.context.title
-        title = 'tittel'
-        #need to fix unicode error in line above
-        #name = self.context.name
         name = self.issuu_name 
         file = self.context.file.data
         
@@ -113,7 +112,7 @@ class IssuuView(BrowserView):
             action = 'issuu.document.upload',
             data = {
                 'file' : self.file,
-                'title': title,
+                'title': self.title,
                 'name' : name,
             }
         )        
