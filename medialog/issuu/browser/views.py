@@ -127,7 +127,8 @@ class IssuuView(BrowserView):
         self.settings.issuu_id = my_issuu_id
         
         #change view now that the file exists on issuu.com
-        self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
+        #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
+        self.context.setLayout("issuuview")
         
     def _query(self, url, action, data=None):
         """
