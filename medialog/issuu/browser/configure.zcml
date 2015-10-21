@@ -29,14 +29,14 @@
   	 layer="medialog.issuu.interfaces.IIssuuLayer"
     />  
  
-  <browser:page 
+  <!--browser:page 
     	name="issuu_fullscreen_view"
   	 for="medialog.issuu.interfaces.IIssuu"
   	 permission="zope2.View"
   	 template="issuufullscreen.pt"
   	 class=".views.IssuuView"
   	 layer="medialog.issuu.interfaces.IIssuuLayer"
-    />  
+    /-->  
        
   <browser:page
       for="*"

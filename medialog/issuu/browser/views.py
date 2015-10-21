@@ -13,10 +13,6 @@ from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-
-#from plone.api import portal
-
-
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
 
@@ -24,6 +20,7 @@ from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
 from medialog.issuu.settings import IIssuuSettings
 
+ 
 try :
    # python 2.6
    import json
@@ -44,7 +41,58 @@ class IIssuuView(Interface):
     """
     issuu view interface
     """
+    
+    def portal_catalog():
+        """returns catalog"""
+
+
+    def portal():
+        """returns catalog"""
+       
+    def upload_document():
+        """
+        Upload the given ``file``.
+        """
         
+        
+    def _query():
+        """
+        Low-level access to the Issuu API.
+        """
+          
+    def _sign():
+        """
+        Create a signature of the given ``data``.
+        """
+         
+        
+    def list_documents():
+        """
+        List documents for this user.
+        """
+     
+     
+    def delete_document():
+        """
+        Delete a document.
+
+        :param id: A string describing a document ID.
+        """
+ 
+    def delete_documents():
+        """
+        Delete the documents with the given ``ids``.
+
+        :param ids: A list of strings describing document IDs.
+        """
+        
+    def embed_add():
+        """
+        Create embed (for html5) ``ids``.
+        not sure if this works yet
+        :param ids: ID and size
+        """
+         
     def javascript():
         """
         content to be included in javascript area of template
@@ -126,9 +174,13 @@ class IssuuView(BrowserView):
         self.settings.issuu_name = self.issuu_name
         self.settings.issuu_id = my_issuu_id
         
+        import pdb; pdb.set_trace()
+        
         #change view now that the file exists on issuu.com
         #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         self.context.setLayout("issuuview")
+        self.context.restrictedTraverse('view') 
+
         
     def _query(self, url, action, data=None):
         """
@@ -221,6 +273,7 @@ class IssuuView(BrowserView):
         
         self.delete_documents([self.settings.issuu_name])       
         self.request.response.redirect(self.context.absolute_url() + '/@@disable_issuu')
+        #self.context.restrictedTraverse('@@disable_issuu') 
 
 
     def delete_documents(self, ids):
@@ -320,4 +373,6 @@ class IssuuView(BrowserView):
  		'showflipbtn' : self.settings.showflipbtn,
  		'portal_url': self.portal_url,
 }
-                    
+     
+     
+                 

@@ -17,22 +17,29 @@ except ImportError:
     #For Zope 2.9
     from zope.app.annotation.interfaces import IAnnotations
 
+from .views import IssuuView, IIssuuView
+
+
 class IssuuUtilProtected(BrowserView):
     """
     a protected traverable utility for 
     enabling and disabling issuu
     """
     implements(IIssuuUtilProtected)
+                
     def enable(self):
         utils = getToolByName(self.context, 'plone_utils')
 
         if not IIssuu.providedBy(self.context):
             alsoProvides(self.context, IIssuu)
+
             self.context.reindexObject(idxs=['object_provides'])
             utils.addPortalMessage("You have uploaded this file to issuu.com. You will have to wait a little before before the doucment is found (issuu.com has to process it).")
-            self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')    
+            self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')   
+            #self.context.restrictedTraverse('/@@issuu_upload') 
         else:  
             self.request.response.redirect(self.context.absolute_url())
+            #self.context.restrictedTraverse('/@@file_view') 
         
     def disable(self):
         utils = getToolByName(self.context, 'plone_utils')
@@ -50,7 +57,12 @@ class IssuuUtilProtected(BrowserView):
             utils.addPortalMessage("Issuu removed.")
             
         #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=file_view')
-        self.context.setLayout("file_view")
+        #self.context.setLayout("file_view")
+        #self.context.restrictedTraverse('/view') 
+        IssuuView(self.context, self.request).delete_document()
+        
+        return True
+
         
 class IssuuUtil(BrowserView):
     """
