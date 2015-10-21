@@ -50,7 +50,7 @@ class IssuuUtilProtected(BrowserView):
             utils.addPortalMessage("Issuu removed.")
             
         #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=file_view')
-        self.context.setLayout("file_view")()
+        self.context.setLayout("file_view")
         
 class IssuuUtil(BrowserView):
     """
