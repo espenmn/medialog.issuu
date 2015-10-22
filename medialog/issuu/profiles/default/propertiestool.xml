@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<object name="portal_properties" meta_type="Plone Properties Tool">
- <object name="issuu_properties" meta_type="Plone Property Sheet" purge="False">
-  <property name="title" type="string">Issuu Properties</property> 
-  <property name="issuu_key" type="string">lqa8qtnyddfsvqgcd4ogzbv9143rq3h2</property> 
-  <property name="issuu_secret" type="string">l8mw4y8si83pk3xx6sy6brvmc6giw32h</property> 
-    <property name="domain" type="string">products.medialog.no</property> 
-  </object>
-</object>    

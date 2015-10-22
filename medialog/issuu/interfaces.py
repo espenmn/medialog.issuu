@@ -1,8 +1,10 @@
-from zope.interface import Interface, Attribute
+from zope.interface import Interface, Attribute, alsoProvides
 from zope import schema
+from plone.directives import form
 from medialog.issuu import issuuMessageFactory  as _
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-#from OFS.interfaces import IItem
+
+from medialog.controlpanel.interfaces import IMedialogControlpanelSettingsProvider
 
 class IIssuuLayer(Interface):
     """
@@ -180,3 +182,35 @@ class IIssuuSettings(Interface):
         default=u"",
         required=False,
     )
+
+
+class IIssuuLoginSettings(form.Schema):
+    """Adds settings to medialog.controlpanel
+        """
+    form.fieldset(
+        'Issuu',
+        label=_(u'Issuu Settings'),
+            fields=[
+                    'issuu_key',
+                    'issuu_secret',
+                    'domain',
+            ],
+    )
+        
+    issuu_key = schema.TextLine(
+        title = _(u"issuu_key", 
+            default=u"Issuu Key"),
+        required=True,
+    )
+           
+    issuu_secret = schema.TextLine(
+        title = _(u"issuu_key", 
+            default=u"Issuu Key"),
+        required=True
+    )
+     
+    domain = schema.TextLine(
+        title = _(u"domain", 
+            default=u"Domain"),
+    )           
+alsoProvides(IIssuuLoginSettings, IMedialogControlpanelSettingsProvider)

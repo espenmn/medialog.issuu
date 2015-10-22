@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<registry>
+    <records interface="medialog.issuu.interfaces.IIssuuLoginSettings">
+        <value key="issuu_key">lqa8qtnyddfsvqgcd4ogzbv9143rq3h2</value>
+        <value key="issuu_secret">l8mw4y8si83pk3xx6sy6brvmc6giw32h</value>
+        <value key="domain">products.medialog.no</value>
+    </records>
+</registry>
+
+
+
+

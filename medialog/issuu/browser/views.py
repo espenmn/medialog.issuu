@@ -19,12 +19,12 @@ from Products.Five.browser import BrowserView
 from plone.app.customerize import registration
 
 from medialog.issuu import issuuMessageFactory as _
-from medialog.issuu.settings import IssuuSettings
-from medialog.issuu.settings import IIssuuSettings
+from medialog.issuu.settings import IssuuSettings, IIssuuSettings
 from medialog.issuu.interfaces import IIssuuUtilProtected, \
     IIssuu, IIssuuUtil
     
 from plone.app.contenttypes.interfaces import IFile
+from plone import api
  
 try :
    # python 2.6
@@ -139,11 +139,11 @@ class IssuuView(BrowserView):
         portal_state = getMultiAdapter((context, request), name='plone_portal_state')
         self.portal_url = portal_state.portal_url()
         
-        #the issuu settings are stored in portal properties
-        issuu_properties = getToolByName(context, 'portal_properties').issuu_properties  
-        self.key=issuu_properties.issuu_key
-        self.domain=issuu_properties.domain
-        self.secret=issuu_properties.issuu_secret
+        #the issuu login settings are stored in the registry
+        self.key = api.portal.get_registry_record('medialog.issuu.interfaces.IIssuuLoginSettings.issuu_key')
+        self.secret = api.portal.get_registry_record('medialog.issuu.interfaces.IIssuuLoginSettings.issuu_secret')
+        self.domain = api.portal.get_registry_record('medialog.issuu.interfaces.IIssuuLoginSettings.domain')
+
         self.title = context.title.encode("utf-8")
         self.context=context               
         self.request = request

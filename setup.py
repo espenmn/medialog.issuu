@@ -38,8 +38,8 @@ setup(name='medialog.issuu',
       zip_safe=False,
       install_requires=['setuptools',
                         'requests >= 0.9, < 1.0',
-                        'Products.CMFDefault',
-                        'plone.app.form'
+                        'medialog.controlpanel',
+                        'Plone >= 5.0b4',
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,
