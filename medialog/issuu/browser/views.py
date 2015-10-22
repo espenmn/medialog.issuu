@@ -23,6 +23,8 @@ from medialog.issuu.settings import IssuuSettings
 from medialog.issuu.settings import IIssuuSettings
 from medialog.issuu.interfaces import IIssuuUtilProtected, \
     IIssuu, IIssuuUtil
+    
+from plone.app.contenttypes.interfaces import IFile
  
 try :
    # python 2.6
@@ -54,12 +56,10 @@ class IssuuUtilProtected(BrowserView):
 
             self.context.reindexObject(idxs=['object_provides'])
             utils.addPortalMessage("You have uploaded this file to issuu.com. You will have to wait a little before before the doucment is found (issuu.com has to process it).")
-            self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')   
             IssuuView(self.context, self.request).upload_document()
-            #self.context.restrictedTraverse('/@@issuu_upload') 
         else:  
-            self.request.response.redirect(self.context.absolute_url())
-            #self.context.restrictedTraverse('/@@file_view') 
+            self.request.response.redirect(self.context.absolute_url()) + '/@@file_view'
+
         
     def disable(self):
         utils = getToolByName(self.context, 'plone_utils')
@@ -78,7 +78,8 @@ class IssuuUtilProtected(BrowserView):
             utils.addPortalMessage("Issuu removed.")
             
         self.context.setLayout("file_view")
-        return True
+        self.request.response.redirect(self.context.absolute_url() + '/@@file_view')
+       
 
         
 class IssuuUtil(BrowserView):
@@ -106,7 +107,7 @@ class IssuuUtil(BrowserView):
         if context is None:
             context = self.context
             
-        if self.enabled()==False : # and hasattr(context.file, contentType):
+        if self.enabled()==False and IFile.providedBy(context):
             return context.file.contentType in ('application/pdf', 'application/x-pdf', 'image/pdf', 'application/vnd.oasis.opendocument.text-master', 'application/vnd.oasis.opendocument.text', 'application/vnd.wordperfect', 'application/x-wordperfect', 'application/vnd.sun.xml.writer', 'application/wordperfect', 'application/vnd.sun.xml.impress', 'application/vnd.oasis.opendocument.presentation', 'application/vnd.ms-powerpoint', 'application/powerpoint, application/mspowerpoint', 'application/x-mspowerpoint', 'application/rtf', 'application/msword')
         else:
             return False    
@@ -188,11 +189,8 @@ class IssuuView(BrowserView):
         self.settings.issuu_name = self.issuu_name
         self.settings.issuu_id = my_issuu_id
         
-        #change view now that the file exists on issuu.com
-        #dont redirect on Plone 5, CRSF error
-        #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         self.context.setLayout("issuuview")
-        return self.context
+        self.request.response.redirect(self.context.absolute_url() + '/view')
         
     def _query(self, url, action, data=None):
         """

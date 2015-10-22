@@ -30,7 +30,7 @@ class IIssuuUtilProtected(Interface):
         """
         #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=file_view')
         self.context.setLayout("file_view")
-        self.context.restrictedTraverse('@@file_view') 
+        #self.context.restrictedTraverse('@@file_view') 
 
 class IIssuuUtil(Interface):
 

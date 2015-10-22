@@ -94,7 +94,6 @@
      layer="medialog.issuu.interfaces.IIssuuLayer"
      class=".views.IssuuUtil" />
      
-     
   <browser:page
     name="issuu-settings"
     for="medialog.issuu.interfaces.IIssuu"
@@ -109,7 +108,7 @@
     
        
   <!--browser:menuItem
-    for="Products.ATContentTypes.interface.file.IFileContent"
+    for="medialog.issuu.interfaces.IIssuu"
     menu="plone_displayviews"
     title="Issuu View"
     action="issuuview"
@@ -117,7 +116,7 @@
     description="Shows the content the Issuu Way- embedded." /-->
 
   <!--browser:menuItem
-    for="Products.ATContentTypes.interface.file.IFileContent"
+    for="medialog.issuu.interfaces.IIssuu"
     menu="plone_displayviews"
     title="Issuu View II"
     action="issuufile_view"
