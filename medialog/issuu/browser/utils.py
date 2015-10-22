@@ -44,6 +44,8 @@ class IssuuUtilProtected(BrowserView):
     def disable(self):
         utils = getToolByName(self.context, 'plone_utils')
         
+        import pdb; pdb.set_trace()
+        
         if IIssuu.providedBy(self.context):
             noLongerProvides(self.context, IIssuu)
             self.context.reindexObject(idxs=['object_provides'])
@@ -57,8 +59,8 @@ class IssuuUtilProtected(BrowserView):
             utils.addPortalMessage("Issuu removed.")
             
         #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=file_view')
-        #self.context.setLayout("file_view")
-        #self.context.restrictedTraverse('/view') 
+        self.context.setLayout("file_view")
+        #self.context.restrictedTraverse('view') 
         IssuuView(self.context, self.request).delete_document()
         
         return True
