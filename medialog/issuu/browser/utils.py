@@ -45,8 +45,6 @@ class IssuuUtilProtected(BrowserView):
     def disable(self):
         utils = getToolByName(self.context, 'plone_utils')
         
-        import pdb; pdb.set_trace()
-        
         if IIssuu.providedBy(self.context):
             noLongerProvides(self.context, IIssuu)
             self.context.reindexObject(idxs=['object_provides'])

@@ -20,6 +20,7 @@ from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
 from medialog.issuu.settings import IIssuuSettings
 
+from medialog.issuu.util import IssuuUtilProtected
  
 try :
    # python 2.6
@@ -45,7 +46,6 @@ class IIssuuView(Interface):
     def portal_catalog():
         """returns catalog"""
 
-
     def portal():
         """returns catalog"""
        
@@ -53,7 +53,6 @@ class IIssuuView(Interface):
         """
         Upload the given ``file``.
         """
-        
         
     def _query():
         """
@@ -64,13 +63,11 @@ class IIssuuView(Interface):
         """
         Create a signature of the given ``data``.
         """
-         
         
     def list_documents():
         """
         List documents for this user.
         """
-     
      
     def delete_document():
         """
@@ -105,8 +102,6 @@ class IssuuView(BrowserView):
     """
     implements(IIssuuSettings)
     
-
-        
     def __init__(self, context, request):
         """halllo"""
         portal_state = getMultiAdapter((context, request), name='plone_portal_state')
@@ -114,24 +109,14 @@ class IssuuView(BrowserView):
         
         #the issuu settings are stored in portal properties
         issuu_properties = getToolByName(context, 'portal_properties').issuu_properties  
-        
         self.key=issuu_properties.issuu_key
         self.domain=issuu_properties.domain
         self.secret=issuu_properties.issuu_secret
-        
         self.title = context.title.encode("utf-8")
-        
         self.context=context               
         self.request = request
-        self.settings = IssuuSettings(context)
-        
+        self.settings = IssuuSettings(context)  
         self.issuu_id = self.settings.issuu_id
-        
-        #thanks to nathan for this line
-        #remember 'open' takes a file (ONLY)
-        #PS it is probably easier to use upload with URL (issuu.com supportst that)
-        #but this would not work on closed networks / intranet.
-        #self.file = StringIO(str(context.getFile().data))
         self.file =  StringIO(context.file.data)
         
     @property
@@ -149,9 +134,7 @@ class IssuuView(BrowserView):
         Upload the given ``file``.
         """
         self.issuu_name = str(random.randint(1000000000000,9000000000000))
-        
 
-        
         name = self.issuu_name 
         file = self.context.file.data
         
@@ -174,12 +157,12 @@ class IssuuView(BrowserView):
         self.settings.issuu_name = self.issuu_name
         self.settings.issuu_id = my_issuu_id
         
-        import pdb; pdb.set_trace()
-        
         #change view now that the file exists on issuu.com
+        #dont redirect on Plone 5, CRSF error
         #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         self.context.setLayout("issuuview")
         self.context.restrictedTraverse('view') 
+        return True
 
         
     def _query(self, url, action, data=None):
@@ -272,9 +255,11 @@ class IssuuView(BrowserView):
         #        self.delete_documents(doc['document']['name'])
         
         self.delete_documents([self.settings.issuu_name])       
-        self.request.response.redirect(self.context.absolute_url() + '/@@disable_issuu')
+        IssuuUtilProtected(self.context, self.request).disable()
+        #dont redirect on Plone 5 , CRSF protection
+        #self.request.response.redirect(self.context.absolute_url() + '/@@disable_issuu')
         #self.context.restrictedTraverse('@@disable_issuu') 
-
+        return True
 
     def delete_documents(self, ids):
         """
@@ -309,30 +294,26 @@ class IssuuView(BrowserView):
                 'height' : 600,
                 'width': 600,
                 'readerStartPage' : 1,
-                
             }
         )        
 
         #save settings we got back 
         issuu_response = response['_content']['document']
         my_issuu_embedid = issuu_response['dataConfigId']
-        
- 
-        
+
     
     class Error(StandardError):
         """
         To do: Give feedback if issuu.com error.
         """
         pass
-        
-        
+
     
     def javascript(self):
         """
-    		We need this javascript for the swf view
-    	"""
-    	return u"""
+          We need this javascript for the swf view
+        """
+        return u"""
         <script type="text/javascript">
                 var attributes = {
                     id: 'issuuViewer'
