@@ -4,7 +4,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="medialog.issuu">
 
-  <include package="plone.app.contentmenu" />
+  <!--include package="plone.app.contentmenu" /-->
 
   <!-- -*- extra stuff goes here. PS Permissions are wrong (look at the indented lines) -*- -->
   <permission
@@ -75,7 +75,7 @@
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="enable"
     layer="medialog.issuu.interfaces.IIssuuLayer"
-    class=".utils.IssuuUtilProtected" />
+    class=".views.IssuuUtilProtected" />
     
   <browser:page 
     name="disable_issuu"
@@ -84,7 +84,7 @@
     allowed_interface="medialog.issuu.interfaces.IIssuuUtilProtected"
     attribute="disable"
     layer="medialog.issuu.interfaces.IIssuuLayer"
-    class=".utils.IssuuUtilProtected" />
+    class=".views.IssuuUtilProtected" />
     
    <browser:page 
      name="issuu_util"
@@ -92,7 +92,7 @@
      permission="medialog.issuu.issuupermissions"
      allowed_interface="medialog.issuu.interfaces.IIssuuUtil"
      layer="medialog.issuu.interfaces.IIssuuLayer"
-     class=".utils.IssuuUtil" />
+     class=".views.IssuuUtil" />
      
      
   <browser:page

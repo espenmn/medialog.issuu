@@ -5,22 +5,24 @@ from Acquisition import aq_inner
 import random
 import requests
 from hashlib import md5
-#import json
 from cStringIO import StringIO
 
-from zope.interface import implements, Interface
+from zope.interface import implements, Interface, alsoProvides, noLongerProvides
+from zope.component import getMultiAdapter
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 from Products.CMFCore.utils import getToolByName
-from zope.component import getMultiAdapter
+from Products.Five.browser import BrowserView
+
+from plone.app.customerize import registration
 
 from medialog.issuu import issuuMessageFactory as _
 from medialog.issuu.settings import IssuuSettings
 from medialog.issuu.settings import IIssuuSettings
-
-from medialog.issuu.util import IssuuUtilProtected
+from medialog.issuu.interfaces import IIssuuUtilProtected, \
+    IIssuu, IIssuuUtil
  
 try :
    # python 2.6
@@ -37,59 +39,88 @@ except ImportError:
     from zope.app.annotation.interfaces import IAnnotations
 
 
+class IssuuUtilProtected(BrowserView):
+    """
+    a protected traverable utility for 
+    enabling and disabling issuu
+    """
+    implements(IIssuuUtilProtected)
+                
+    def enable(self):
+        utils = getToolByName(self.context, 'plone_utils')
+
+        if not IIssuu.providedBy(self.context):
+            alsoProvides(self.context, IIssuu)
+
+            self.context.reindexObject(idxs=['object_provides'])
+            utils.addPortalMessage("You have uploaded this file to issuu.com. You will have to wait a little before before the doucment is found (issuu.com has to process it).")
+            self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')   
+            IssuuView(self.context, self.request).upload_document()
+            #self.context.restrictedTraverse('/@@issuu_upload') 
+        else:  
+            self.request.response.redirect(self.context.absolute_url())
+            #self.context.restrictedTraverse('/@@file_view') 
+        
+    def disable(self):
+        utils = getToolByName(self.context, 'plone_utils')
+        
+        if IIssuu.providedBy(self.context):
+            noLongerProvides(self.context, IIssuu)
+            self.context.reindexObject(idxs=['object_provides'])
+            
+            #now delete the annotation
+            annotations = IAnnotations(self.context)
+            metadata = annotations.get('medialog.issuu', None)
+            if metadata is not None:
+                del annotations['medialog.issuu']
+            
+            IssuuView(self.context, self.request).delete_document()
+            utils.addPortalMessage("Issuu removed.")
+            
+        self.context.setLayout("file_view")
+        return True
+
+        
+class IssuuUtil(BrowserView):
+    """
+    a public traverable utility that checks if it is enabled etc
+    """
+    implements(IIssuuUtil)
+
+    def enabled(self):
+        return IIssuu.providedBy(self.context)    
+
+
+    def view_enabled(self):
+        utils = getToolByName(self.context, 'plone_utils')
+        try:
+            return utils.browserDefault(self.context)[1][0] == "issuuview"
+        except:
+            return False
+
+    def should_include(self):
+        return self.enabled() or self.view_enabled()
+        
+    
+    def is_right_type(self, context=None):
+        if context is None:
+            context = self.context
+            
+        if self.enabled()==False : # and hasattr(context.file, contentType):
+            return context.file.contentType in ('application/pdf', 'application/x-pdf', 'image/pdf', 'application/vnd.oasis.opendocument.text-master', 'application/vnd.oasis.opendocument.text', 'application/vnd.wordperfect', 'application/x-wordperfect', 'application/vnd.sun.xml.writer', 'application/wordperfect', 'application/vnd.sun.xml.impress', 'application/vnd.oasis.opendocument.presentation', 'application/vnd.ms-powerpoint', 'application/powerpoint, application/mspowerpoint', 'application/x-mspowerpoint', 'application/rtf', 'application/msword')
+        else:
+            return False    
+
+    
+    
+
+
 
 class IIssuuView(Interface):
     """
     issuu view interface
     """
     
-    def portal_catalog():
-        """returns catalog"""
-
-    def portal():
-        """returns catalog"""
-       
-    def upload_document():
-        """
-        Upload the given ``file``.
-        """
-        
-    def _query():
-        """
-        Low-level access to the Issuu API.
-        """
-          
-    def _sign():
-        """
-        Create a signature of the given ``data``.
-        """
-        
-    def list_documents():
-        """
-        List documents for this user.
-        """
-     
-    def delete_document():
-        """
-        Delete a document.
-
-        :param id: A string describing a document ID.
-        """
- 
-    def delete_documents():
-        """
-        Delete the documents with the given ``ids``.
-
-        :param ids: A list of strings describing document IDs.
-        """
-        
-    def embed_add():
-        """
-        Create embed (for html5) ``ids``.
-        not sure if this works yet
-        :param ids: ID and size
-        """
-         
     def javascript():
         """
         content to be included in javascript area of template
@@ -161,9 +192,7 @@ class IssuuView(BrowserView):
         #dont redirect on Plone 5, CRSF error
         #self.request.response.redirect(self.context.absolute_url() + '/selectViewTemplate?templateId=issuuview')
         self.context.setLayout("issuuview")
-        self.context.restrictedTraverse('view') 
-        return True
-
+        return self.context
         
     def _query(self, url, action, data=None):
         """
@@ -256,11 +285,9 @@ class IssuuView(BrowserView):
         
         self.delete_documents([self.settings.issuu_name])       
         IssuuUtilProtected(self.context, self.request).disable()
-        #dont redirect on Plone 5 , CRSF protection
-        #self.request.response.redirect(self.context.absolute_url() + '/@@disable_issuu')
-        #self.context.restrictedTraverse('@@disable_issuu') 
-        return True
-
+        self.context.restrictedTraverse('view') 
+       
+        
     def delete_documents(self, ids):
         """
         Delete the documents with the given ``ids``.
