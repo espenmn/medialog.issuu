@@ -135,7 +135,7 @@ class IssuuView(BrowserView):
     implements(IIssuuSettings)
     
     def __init__(self, context, request):
-        """halllo"""
+        """views for managing isssuu content"""
         portal_state = getMultiAdapter((context, request), name='plone_portal_state')
         self.portal_url = portal_state.portal_url()
         
@@ -283,7 +283,7 @@ class IssuuView(BrowserView):
         
         self.delete_documents([self.settings.issuu_name])       
         IssuuUtilProtected(self.context, self.request).disable()
-        self.context.restrictedTraverse('view') 
+        self.context.restrictedTraverse('/@@view') 
        
         
     def delete_documents(self, ids):
