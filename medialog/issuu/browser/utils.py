@@ -36,6 +36,7 @@ class IssuuUtilProtected(BrowserView):
             self.context.reindexObject(idxs=['object_provides'])
             utils.addPortalMessage("You have uploaded this file to issuu.com. You will have to wait a little before before the doucment is found (issuu.com has to process it).")
             self.request.response.redirect(self.context.absolute_url() + '/@@issuu_upload')   
+            IssuuView(self.context, self.request).upload_document()
             #self.context.restrictedTraverse('/@@issuu_upload') 
         else:  
             self.request.response.redirect(self.context.absolute_url())
@@ -62,7 +63,6 @@ class IssuuUtilProtected(BrowserView):
         self.context.setLayout("file_view")
         #self.context.restrictedTraverse('view') 
         IssuuView(self.context, self.request).delete_document()
-        
         return True
 
         
