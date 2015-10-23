@@ -5,9 +5,8 @@ This is a product to upload and manage files on issuu.com and use issuu.coms vie
 The following file types should work
 "pdf", "odt", "doc", "wpd", "sxw", "sxi", "rtf", "odp" and "ppt"
 
-https://youtu.be/Cc7wq-kl7qU
-
-image:: contrp_screenshot.png
+image:: https://github.com/espenmn/medialog.issuu/blob/master/contrp_screenshot.png
+[![Video](http://img.youtube.com/vi/Cc7wq-kl7qU/0.jpg)](https://www.youtube.com/watch?v=Cc7wq-kl7qU)
 
 You should add your issue id etc to the medialog control panel
 (you get a free account at issuu.com ).
