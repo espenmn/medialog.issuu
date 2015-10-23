@@ -6,6 +6,7 @@ Changelog
 -------------------
 
 - Plone 5
+- Added control panel
 - For Plone 3 & 4, use version 0.3.3
 
 

@@ -12,7 +12,7 @@ def read(*rnames):
 version = '0.4'
 
 long_description = (
-    read('README.txt'))
+    read('README.rst'))
 
 tests_require = ['zope.testing']
 
